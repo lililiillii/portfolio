@@ -1,0 +1,2666 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="2024–2026 임베디드 엔지니어링 프로젝트 및 실증 자료 기반 AI 협업 사례. 연도별 상세, Codex 원인 분석, Git patch, 정적 검토와 검증 한계." name="description"/><title>홍진기 · Embedded Engineering &amp; AI Projects Dashboard</title><style>
+:root{color-scheme:dark;--bg:#080f1b;--surface:#101d30;--surface-hi:#172940;--surface-low:#0b1626;--ink:#f2f7fd;--sub:#c5d3e3;--muted:#9cafc5;--line:#29415b;--line2:#395775;--aqua:#73e3c5;--blue:#92b8ff;--gold:#f1ce92;--radius:17px;--shadow:0 16px 45px #0005}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,'Segoe UI','Noto Sans KR','Malgun Gothic',sans-serif;font-size:14px;line-height:1.7}button{font:inherit;cursor:pointer}a{color:var(--aqua)}button:focus-visible,a:focus-visible{outline:3px solid var(--aqua);outline-offset:3px}button:disabled{opacity:.4;cursor:not-allowed}.skip{position:absolute;top:-100px;left:12px;background:white;color:black;padding:10px;z-index:50}.skip:focus{top:8px}#app{display:grid;grid-template-columns:242px minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;border-right:1px solid var(--line);background:#0b1727;padding:25px 18px;display:flex;flex-direction:column;gap:26px;z-index:10}.identity{display:flex;gap:11px;align-items:center}.monogram{display:grid;place-items:center;height:39px;width:39px;background:#164239;color:var(--aqua);border:1px solid #39836d;border-radius:11px;font-weight:900;letter-spacing:-.08em;font-size:17px}.identity strong{display:block;font-size:14px;line-height:1.3}.identity small{display:block;font-size:10px;color:var(--muted);letter-spacing:.11em}.side-label{font-size:10px;font-weight:800;letter-spacing:.17em;color:var(--muted);margin:0 0 9px 10px}.sidenav{display:grid;gap:5px}.nav{width:100%;background:transparent;border:1px solid transparent;color:var(--sub);display:flex;justify-content:space-between;align-items:center;gap:6px;padding:12px 13px;border-radius:11px;text-align:left;font-weight:740}.nav span:last-child{color:var(--muted);font-size:11px}.nav.active,.nav:hover{background:#173148;border-color:#386481;color:#fff}.nav.active span:last-child{color:var(--aqua)}.side-note{margin-top:auto;border-top:1px solid var(--line);padding:16px 8px 0;font-size:11px;color:var(--muted)}.side-note b{display:block;color:var(--aqua);margin-bottom:7px;font-size:10px;letter-spacing:.1em}.side-note strong{color:var(--sub)}.main{min-width:0}.topbar{height:65px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 clamp(18px,4vw,58px);border-bottom:1px solid var(--line);background:#0b1626e8;position:sticky;top:0;z-index:7;backdrop-filter:blur(12px)}.crumb{color:var(--sub);font-size:12px;font-weight:760}.crumb b{color:var(--aqua)}.topmeta{font-size:11px;color:var(--muted);letter-spacing:.06em}.content{max-width:1390px;margin:auto;padding:32px clamp(18px,4vw,58px) 75px}.eyebrow{font-size:11px;letter-spacing:.17em;font-weight:850;color:var(--aqua)}h1,h2,h3,h4,p{margin-top:0}h1{font-size:clamp(31px,3.8vw,53px);letter-spacing:-.064em;line-height:1.17;margin:12px 0 17px}h2{font-size:27px;letter-spacing:-.05em;line-height:1.3;margin:7px 0 8px}h3{font-size:19px;line-height:1.43;letter-spacing:-.035em}p{color:var(--sub)}.hero-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,.9fr);gap:17px}.hero-card{background:radial-gradient(ellipse at 100% 0%,#1f4050 0%,transparent 45%),linear-gradient(135deg,#172c45,#101e31);border:1px solid #385674;border-radius:20px;padding:32px 32px 27px}.hero-card p{max-width:660px;font-size:14px;margin-bottom:20px}.accent{color:var(--aqua)}.pills{display:flex;flex-wrap:wrap;gap:7px}.pill{color:#bed3e7;border:1px solid #42617d;background:#142940;font-size:11px;padding:5px 10px;border-radius:99px;font-weight:750}.expertise{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:25px}.expertise h2{font-size:19px;margin-bottom:12px}.expert-row{padding:12px 0;border-top:1px solid var(--line)}.expert-row strong{display:block;font-size:13px}.expert-row small{color:var(--muted);display:block;font-size:11px;margin-top:2px}.section-head{display:flex;justify-content:space-between;gap:15px;align-items:end;margin:36px 0 15px}.section-head p{font-size:12px;color:var(--muted);margin:0}.year-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.year-card{background:linear-gradient(145deg,#172a43,#101c2f);border:1px solid #344f6d;border-radius:17px;color:var(--ink);padding:23px;text-align:left;display:flex;flex-direction:column;min-height:382px;transition:transform .16s,border .16s,box-shadow .16s}.year-card:hover{transform:translateY(-4px);border-color:var(--aqua);box-shadow:var(--shadow)}.year-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.year-num{font-size:45px;letter-spacing:-.09em;line-height:1;font-weight:880}.year-count{color:var(--aqua);font-size:10px;border:1px solid #316c64;background:#10352f;border-radius:99px;padding:4px 8px;font-weight:850}.year-eyebrow{font-size:10px;color:var(--aqua);font-weight:800;letter-spacing:.13em;margin:14px 0 5px}.year-title{display:block;font-size:19px;letter-spacing:-.045em;line-height:1.37}.year-desc{color:var(--muted);font-size:12px;margin-top:9px;min-height:44px}.year-subtitle{display:block;color:var(--muted);font-weight:850;font-size:10px;letter-spacing:.07em;margin:14px 0 7px}.year-keywords{display:grid;gap:6px}.tech-tag{padding:5px 8px;color:#d9eaf8;border-left:2px solid #7ba3ca;background:#12253b;font-size:11px;line-height:1.45}.year-action{margin-top:auto;padding-top:19px;display:flex;justify-content:space-between;gap:5px;color:var(--aqua);font-size:12px;font-weight:820}.career-track{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.track-item{padding:17px 18px;border:1px solid var(--line);background:var(--surface-low);border-radius:13px;border-top:3px solid #5a93c0}.track-item b{color:var(--aqua);display:block;font-size:15px}.track-item strong{display:block;font-size:12px;margin:5px 0}.track-item p{font-size:11px;color:var(--muted);margin:0}.smallprint{margin-top:24px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}.year-topline{display:flex;gap:12px;align-items:center;justify-content:space-between}.text-button{background:none;color:var(--aqua);border:0;font-weight:780;padding:7px 0}.year-intro{background:linear-gradient(145deg,#162940,#111f33);border:1px solid #385773;border-radius:19px;padding:26px;margin:15px 0 15px}.detail-year{display:flex;gap:15px;align-items:center}.year-badge{font-size:44px;line-height:1;font-weight:900;color:var(--aqua);letter-spacing:-.08em;border-right:1px solid #46647f;padding-right:16px}.year-intro p{font-size:13px;max-width:890px;margin:10px 0 0}.fact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.fact{background:var(--surface-low);border:1px solid var(--line);border-radius:13px;padding:14px 16px}.fact b{display:flex;align-items:baseline;gap:4px;font-size:21px;color:var(--aqua);line-height:1.35}.fact > span{font-size:10px;font-weight:820;color:var(--muted);letter-spacing:.08em}.fact b span{font-size:inherit;font-weight:inherit;color:inherit;letter-spacing:inherit}.hook-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}.hook{border:1px solid #486583;background:#162f47;color:#d7e7f4;padding:5px 9px;border-radius:7px;font-size:11px}.project-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:29px 0 13px}.project-head h2{font-size:23px;margin:0}.mode{border:1px solid #3c5c79;background:#17324b;color:var(--sub);padding:8px 12px;border-radius:9px;font-size:11px;font-weight:800}.mode:hover{border-color:var(--aqua);color:var(--aqua)}.project-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:13px;align-items:start}.project-menu{display:grid;gap:7px;position:sticky;top:84px}.project-tab{width:100%;display:grid;grid-template-columns:25px 1fr;gap:9px;background:#101f32;border:1px solid var(--line);border-radius:11px;text-align:left;padding:13px;color:var(--sub)}.project-tab.active,.project-tab:hover{background:#1a344a;border-color:#67bea9;color:var(--ink)}.project-tab .project-n{font-size:12px;font-weight:900;color:var(--aqua)}.project-tab strong{font-size:12px;display:block;line-height:1.45}.project-tab small{display:block;color:var(--muted);font-size:10px;margin-top:5px}.detail-panel{min-width:0;border:1px solid var(--line);background:var(--surface);border-radius:15px;overflow:hidden}.project-banner{padding:23px;background:linear-gradient(125deg,#1b3650,#142439);border-bottom:1px solid var(--line)}.project-banner .project-kicker{display:flex;gap:8px;justify-content:space-between;align-items:center;font-size:10px;color:var(--aqua);font-weight:840;letter-spacing:.09em}.status{font-size:10px;letter-spacing:0;font-weight:830;color:#ecdfbc;background:#4a3d24;border:1px solid #826b3b;border-radius:99px;padding:3px 8px}.project-banner h3{font-size:24px;margin:13px 0 7px}.project-banner p{font-size:13px;margin:0}.tech-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}.tech-pills span{font-size:10px;color:#c8def3;padding:4px 8px;border:1px solid #486583;border-radius:6px}.detail-sections{padding:17px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.detail-box{padding:17px;background:#0e1b2e;border:1px solid #2e4864;border-radius:12px;min-width:0}.detail-box.wide{grid-column:1/-1}.detail-box.emphasis{border-left:3px solid var(--aqua)}.detail-box h4{font-size:11px;letter-spacing:.06em;color:var(--aqua);margin:0 0 10px}.detail-box p{font-size:12px;line-height:1.75;margin:0}.detail-box p+p{margin-top:9px}.detail-box b{color:#fff}.detail-box ul{margin:0;padding-left:18px;color:var(--sub);font-size:12px}.detail-box li+li{margin-top:6px}.flow{margin-top:13px;background:#1b334b;border:1px dashed #6582a0;border-radius:8px;color:#dce9f4;padding:10px 12px;font-size:11px}.detail-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:9px;padding:13px 17px;border-top:1px solid var(--line);background:#0f2034}.detail-footer span{font-size:11px;color:var(--muted)}.detail-footer button{border:1px solid #467463;border-radius:8px;background:#16382d;color:var(--aqua);padding:7px 12px;font-size:11px;font-weight:800}.year-growth{margin-top:19px;background:#102f33;border:1px solid #2f7773;border-radius:13px;padding:19px}.year-growth h3{font-size:15px;color:var(--aqua);margin:0 0 7px}.year-growth p{margin:0;font-size:12px}.all-mode .project-layout{display:block}.all-mode .project-menu{position:static;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-bottom:14px}.all-mode #single-project{display:grid;gap:16px}.all-mode .detail-panel{scroll-margin-top:79px}#all-projects{display:none}.all-mode #single-project{display:none}.all-mode #all-projects{display:grid;gap:14px}.report-note{font-size:11px;color:var(--muted);margin-top:15px}.footer{padding:16px clamp(18px,4vw,58px);border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.mobile-nav{display:none}
+@media(max-width:1180px){.year-grid{grid-template-columns:1fr}.year-card{min-height:0}.year-keywords{grid-template-columns:repeat(3,minmax(0,1fr))}.project-layout{grid-template-columns:245px minmax(0,1fr)}.hero-grid{grid-template-columns:1fr}}
+@media(max-width:850px){#app{display:block}.side{height:auto;padding:9px 15px;display:flex;flex-direction:row;align-items:center;gap:10px;position:sticky;top:0;border-bottom:1px solid var(--line);border-right:0}.identity{flex-shrink:0}.identity small,.side-label,.side-note{display:none}.sidenav{display:flex;gap:3px;margin-left:auto}.nav{padding:7px 10px;width:auto;font-size:12px}.nav span:last-child{display:none}.topbar{position:relative;height:45px;padding:0 18px}.topmeta{display:none}.project-layout{grid-template-columns:1fr}.project-menu{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}.project-head{align-items:start}.year-intro{padding:20px}.content{padding:19px 18px 55px}}
+@media(max-width:580px){.identity strong{font-size:11px}.monogram{width:31px;height:31px;font-size:13px}.nav{font-size:11px;padding:6px}.year-keywords{grid-template-columns:1fr}.year-card{padding:20px}.hero-card,.expertise{padding:21px}.fact-grid,.career-track{grid-template-columns:1fr}.detail-sections{grid-template-columns:1fr;padding:10px}.detail-box.wide{grid-column:auto}.year-badge{font-size:32px}.year-intro h2{font-size:21px}.project-menu{grid-template-columns:1fr}.project-banner{padding:18px}.project-banner h3{font-size:21px}.section-head{display:block}.section-head p{margin-top:5px}.year-topline{display:block}.project-head{flex-wrap:wrap}.content{padding:16px 13px 45px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.year-card{transition:none}}
+@media print{body{background:#fff;color:#000}#app{display:block}.side,.topbar,.mode,.project-menu,.detail-footer button,.text-button,.footer{display:none!important}.content{max-width:none;padding:0}.hero-card,.expertise,.year-card,.year-intro,.detail-panel,.detail-box,.fact,.year-growth,.track-item{background:#fff!important;color:#111!important;border-color:#999!important;box-shadow:none}.year-card strong,.detail-panel h3,h1,h2,h3,h4{color:#111!important}p,.detail-box p,.detail-box li,.tech-tag,.project-banner p{color:#222!important}.detail-sections{display:grid}.detail-panel{break-inside:avoid}.year-card{min-height:0}.year-grid{grid-template-columns:repeat(3,1fr)}.tech-tag{background:#fff!important;color:#222!important}#overview[hidden],#year-view[hidden]{display:none!important}}
+
+
+/* v10: AI engineering dashboard */
+.ai-callout{display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(110deg,#153a3b,#14253b);border:1px solid #4d8a87;border-radius:17px;padding:18px 23px;margin-top:18px}.ai-callout strong{display:block;font-size:17px;line-height:1.4}.ai-callout p{font-size:12px;margin:5px 0 0}.ai-callout button,.ai-link{border:1px solid #76dfc6;background:#0d3d37;color:#dffff5;border-radius:10px;padding:10px 15px;font-weight:800;flex-shrink:0}.ai-callout button:hover,.ai-link:hover{background:#165f55}.ai-frame{background:radial-gradient(ellipse at 100% 0%,#20504d 0%,transparent 52%),linear-gradient(130deg,#172e46,#102233);border:1px solid #456b79;border-radius:19px;padding:29px;margin:15px 0}.ai-frame h1{font-size:clamp(28px,3vw,40px);max-width:960px}.ai-frame>p{max-width:980px}.ai-evidence{display:inline-block;margin-top:8px;color:#f1d8aa;background:#49391e;border:1px solid #987a46;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:700}.ai-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:15px 0}.ai-metric{border:1px solid var(--line);background:var(--surface-low);border-radius:12px;padding:17px}.ai-metric b{display:block;color:var(--aqua);font-size:25px;line-height:1.2}.ai-metric span{font-size:12px;color:var(--sub)}.ai-section-head{margin:30px 0 13px}.ai-section-head h2{margin-bottom:3px}.ai-section-head p{font-size:12px;margin-bottom:0}.ai-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.ai-stage{border:1px solid #426784;background:#13283e;padding:13px 10px;border-radius:10px;min-height:110px}.ai-stage small{display:block;color:var(--aqua);font-size:10px;font-weight:800}.ai-stage strong{display:block;font-size:12px;margin:5px 0}.ai-stage span{display:block;font-size:10px;color:var(--muted)}.ai-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.ai-panel{padding:20px 22px;border-radius:13px;border:1px solid var(--line);background:var(--surface)}.ai-panel h3{font-size:17px;margin-bottom:10px}.ai-panel p{font-size:12px;margin-bottom:10px}.ai-panel ul{padding-left:19px;margin:0;color:var(--sub);font-size:12px}.ai-panel li{margin-bottom:8px}.ai-panel strong{color:var(--ink)}.ai-caption{font-size:11px;color:var(--muted);margin-top:13px}.ai-state{color:#f0d2a5!important}.ai-source{border:1px solid #426e66;background:#10312f;border-radius:12px;padding:17px 19px;margin-top:14px;color:var(--sub);font-size:12px}.ai-source b{color:var(--aqua)}.ai-source p{font-size:12px;margin:6px 0 0}.ai-home{margin:0}.ai-code{font:12px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:#0b1727;border:1px solid #345269;border-radius:9px;padding:12px;overflow-wrap:anywhere;color:#b8eadf}.ai-panel.wide{grid-column:1/-1}#ai-view[hidden]{display:none!important}
+@media(max-width:850px){.side{flex-wrap:wrap}.sidenav{max-width:100%;overflow-x:auto}.ai-flow{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:580px){.ai-callout{display:block}.ai-callout button{margin-top:13px;width:100%}.ai-grid,.ai-metrics{grid-template-columns:1fr}.ai-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.ai-frame{padding:21px}.sidenav{gap:1px}.nav{padding:5px 6px!important}}
+@media print{.ai-panel,.ai-frame,.ai-metric,.ai-stage,.ai-callout,.ai-source{background:#fff!important;color:#111!important;border-color:#888!important}.ai-callout button{display:none}}
+
+/* v11: verified AI collaboration case studies */
+.ai-v11-hero{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(250px,1fr);gap:22px;padding:28px;border:1px solid #3b6d72;border-radius:19px;background:linear-gradient(118deg,#152d3b,#193f40 65%,#143238);margin:19px 0 20px}
+.ai-v11-copy h1{font-size:clamp(24px,2.7vw,36px);letter-spacing:-.05em;line-height:1.35;margin:17px 0 14px}.ai-v11-copy p{color:var(--sub);max-width:770px}.ai-v11-summary{display:grid;gap:9px}.ai-v11-summary>div{background:#061e29a8;border:1px solid #477575;border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;gap:2px}.ai-v11-summary small,.ai-label{font-size:10px;letter-spacing:.15em;font-weight:850;color:var(--aqua)}.ai-v11-summary b{font-size:17px}.ai-v11-summary span{font-size:12px;color:var(--sub)}
+.ai-feature,.ai-review{border:1px solid var(--line2);background:var(--surface);padding:23px;border-radius:17px}.ai-feature-head,.ai-review-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.ai-chip{font-size:11px;font-weight:800;border-radius:99px;padding:5px 10px;border:1px solid #6f956b;background:#16352b;color:#8ee5b1}.ai-chip.amber{color:#ffdda4;border-color:#8e713d;background:#36291d}.ai-feature-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:8px 0 16px}.ai-feature-title h3,.ai-review h3{font-size:22px;line-height:1.35;margin:0}.ai-feature-title p{margin:0;color:var(--muted)}.ai-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.ai-steps>div{background:#172d42;border:1px solid #3a5671;border-radius:11px;padding:14px;display:flex;flex-direction:column;gap:7px}.ai-steps small{color:var(--aqua);font-size:10px;letter-spacing:.06em}.ai-steps strong{font-size:14px;line-height:1.4}.ai-steps span{font-size:12px;color:var(--sub)}.ai-feature-bottom{display:grid;grid-template-columns:1.5fr 1fr;gap:15px;margin-top:17px}.ai-feature-bottom>div{padding:14px 16px;border-radius:10px;background:#0c1a2b}.ai-feature-bottom b,.ai-review b{color:#d7f6ea}.ai-feature-bottom p{margin:7px 0 0;color:var(--sub)}
+.ai-proof-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0 27px}.ai-proof-strip>div{display:flex;flex-direction:column;gap:5px;background:#111e30;border:1px solid var(--line);border-radius:12px;padding:17px}.ai-proof-strip small{letter-spacing:.1em;color:var(--aqua);font-size:10px}.ai-proof-strip b{font-size:22px;line-height:1.3}.ai-proof-strip b.warn{color:var(--gold)}.ai-proof-strip span{color:var(--sub);font-size:12px}.ai-v11-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.ai-v11-card{border:1px solid var(--line);border-radius:13px;background:var(--surface);padding:21px}.ai-v11-card h3{font-size:19px;margin:7px 0}.ai-v11-card p{color:var(--sub)}.ai-v11-card small,.ai-source-mini{font-size:11px;color:var(--muted)}.ai-v11-card code{font-size:12px;color:#b7f7de}.ai-review-head{margin-bottom:10px}.ai-review ul{margin:10px 0 0;padding-left:20px}.ai-review li{margin:5px 0;color:var(--sub)}
+.ai-evidence-matrix{margin:8px 0 19px;border:1px solid var(--line);border-radius:12px;overflow:hidden}.ai-evidence-row{display:grid;grid-template-columns:1fr 1.3fr 1.6fr;border-top:1px solid var(--line)}.ai-evidence-row:first-child{border-top:0}.ai-evidence-row span{padding:12px 14px;min-width:0;color:var(--sub)}.ai-evidence-row span:first-child{font-weight:750;color:var(--ink)}.ai-evidence-row.heading{background:#193549}.ai-evidence-row.heading span{color:var(--aqua);font-weight:800}.ai-evidence-row:nth-child(2n):not(.heading){background:#0d1a2a}
+@media(max-width:1080px){.ai-v11-hero{grid-template-columns:1fr}.ai-v11-summary{grid-template-columns:repeat(3,minmax(0,1fr))}.ai-steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.ai-v11-hero{padding:19px}.ai-v11-summary,.ai-steps,.ai-proof-strip,.ai-feature-bottom,.ai-v11-grid{grid-template-columns:1fr}.ai-evidence-row{grid-template-columns:1fr;gap:0;padding:9px 12px}.ai-evidence-row span{padding:3px 0}.ai-evidence-row.heading{display:none}.ai-evidence-row span:nth-child(2):before{content:'근거 · ';color:var(--aqua)}.ai-evidence-row span:nth-child(3):before{content:'표현 · ';color:var(--aqua)}.ai-feature,.ai-review{padding:17px}}
+@media print{.ai-v11-hero,.ai-feature,.ai-review,.ai-v11-card,.ai-proof-strip>div,.ai-evidence-row{break-inside:avoid;color:#111!important;background:#fff!important;border-color:#888!important}.ai-v11-summary>div,.ai-steps>div,.ai-feature-bottom>div{color:#111!important;background:#fff!important;border-color:#aaa!important}}
+
+/* v12 AI project-based portfolio: concise, evidence-led cards */
+.ai12-hero{margin:18px 0 28px;padding:30px;border:1px solid #3b6676;background:linear-gradient(125deg,#163849,#112239 66%,#0d1a2d);border-radius:19px}
+.ai12-hero h1{font-size:clamp(26px,3.3vw,38px);letter-spacing:-.055em;line-height:1.35;margin:11px 0 10px}.ai12-hero p{max-width:820px;font-size:13px;line-height:1.85;color:var(--sub);margin:0}.ai12-metrics{display:flex;gap:28px;margin-top:23px;flex-wrap:wrap}.ai12-metrics div{display:flex;align-items:center;gap:10px}.ai12-metrics b{font-size:26px;color:var(--aqua);letter-spacing:-.05em}.ai12-metrics span{font-size:11px;color:var(--sub);font-weight:750}
+.ai12-section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:28px 0 14px}.ai12-section-title h2{font-size:21px;letter-spacing:-.04em;margin:5px 0 0}.ai12-section-title>p{font-size:11px;color:var(--muted);margin:0}
+.ai12-process{margin-bottom:26px}.ai12-pipeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.ai12-pipeline>div{background:#112338;border:1px solid #34546f;border-radius:12px;padding:14px;min-width:0}.ai12-step{display:block;color:var(--aqua);font-size:11px;font-weight:900;margin-bottom:9px}.ai12-pipeline strong{display:block;color:#e4f4fc;font-size:12px;line-height:1.5}.ai12-pipeline small{display:block;color:var(--muted);font-size:10px;line-height:1.65;margin-top:5px}.ai12-finenote{font-size:10px;color:var(--muted);line-height:1.75;margin:10px 1px 0}
+.ai12-cases{display:grid;gap:12px}.ai12-cases>.ai12-section-title{margin-bottom:0}.ai12-case{border:1px solid #35546d;background:#102036;border-radius:15px;overflow:hidden}.ai12-case-head{display:flex;align-items:center;gap:15px;padding:19px 21px;border-bottom:1px solid #294961;background:linear-gradient(110deg,#1a354b,#12253a)}.ai12-no{font-size:29px;font-weight:900;letter-spacing:-.06em;color:var(--aqua);line-height:1}.ai12-case-head>div{flex:1;min-width:0}.ai12-case-head h3{font-size:17px;letter-spacing:-.04em;margin:5px 0}.ai12-case-head p{font-size:11px;margin:0;color:var(--muted)}.ai12-state{flex-shrink:0;color:#f1d29c;background:#43371f;border:1px solid #765f31;border-radius:99px;padding:5px 9px;font-size:10px;font-weight:750}.ai12-state.positive{color:#9ff0cc;background:#153a30;border-color:#326f60}
+.ai12-case-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;padding:13px}.ai12-highlight,.ai12-contribution{border-radius:10px;padding:16px 17px;min-width:0}.ai12-highlight{background:#12332f;border:1px solid #396e60}.ai12-contribution{background:#0c192b;border:1px solid #2d4760}.ai12-caption{display:block;font-size:10px;font-weight:850;color:var(--aqua);letter-spacing:.035em;margin-bottom:9px}.ai12-highlight strong{display:block;font-size:15px;line-height:1.5;color:#ecfbf5;letter-spacing:-.03em}.ai12-highlight p{font-size:11px;line-height:1.8;color:#c7e6db;margin:10px 0 0}.ai12-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px}.ai12-chips span{font-size:9px;padding:4px 7px;background:#1a4940;border:1px solid #4a8875;border-radius:5px;color:#dcf5e9;font-weight:750}.ai12-contribution ul{font-size:11px;color:var(--sub);line-height:1.75;padding-left:16px;margin:0}.ai12-contribution li+li{margin-top:4px}.ai12-foot{margin-top:11px;border-top:1px dashed #34536d;padding-top:10px;color:var(--muted);font-size:10px;line-height:1.65}
+.ai12-summary{margin-top:19px;border-left:3px solid var(--aqua);background:#123131;padding:18px 20px;border-radius:8px}.ai12-summary strong{font-size:13px;color:var(--aqua)}.ai12-summary p{font-size:12px;color:var(--sub);line-height:1.75;margin:5px 0 0}.ai12-public{font-size:10px;color:var(--muted);line-height:1.8;margin:13px 0 30px}
+@media(max-width:1050px){.ai12-pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.ai12-hero{padding:21px}.ai12-metrics{gap:10px 19px}.ai12-metrics b{font-size:23px}.ai12-section-title{display:block}.ai12-section-title>p{margin-top:5px}.ai12-case-head{flex-wrap:wrap;padding:15px}.ai12-state{margin-left:41px}.ai12-case-grid{grid-template-columns:1fr;padding:9px}.ai12-highlight,.ai12-contribution{padding:14px}}
+@media(max-width:410px){.ai12-pipeline{grid-template-columns:1fr}.ai12-metrics span{font-size:10px}}
+@media print{.ai12-case,.ai12-process{break-inside:avoid}.ai12-highlight,.ai12-contribution{background:white!important;color:black!important}.ai12-highlight strong,.ai12-highlight p{color:black!important}}
+
+/* v14: project-centred AI applications; decorative people/stock photos deliberately omitted */
+.ai14-hero{background:linear-gradient(115deg,#183347,#123d3d);border:1px solid #4b837c;border-radius:18px;padding:28px;margin:15px 0 16px}
+.ai14-hero h1{font-size:clamp(25px,3.1vw,39px);line-height:1.32;margin:12px 0;max-width:960px}.ai14-hero>p{font-size:13px;max-width:970px;line-height:1.85;margin:0;color:#d0dbe4}
+.ai14-headline-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:21px}.ai14-headline-stats>div{background:#08252ba8;border:1px solid #41706d;padding:14px 17px;border-radius:11px;display:flex;flex-direction:column;gap:4px}.ai14-headline-stats b{color:var(--aqua);font-size:21px}.ai14-headline-stats span{font-size:11px;color:var(--sub)}
+.ai14-foundation{border:1px solid #436577;background:#12273a;border-radius:15px;padding:21px 23px;margin:16px 0 25px}.ai14-foundation h2{font-size:18px;line-height:1.4;margin:7px 0 8px}.ai14-foundation p{font-size:12px;line-height:1.8;margin:0}.ai14-flow{margin-top:15px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.ai14-flow span{background:#0d3540;border:1px solid #3e7b75;color:#bcefe2;font-weight:700;border-radius:9px;padding:10px 7px;text-align:center;font-size:11px}
+.ai14-section-title{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:25px 0 14px}.ai14-section-title h2{font-size:23px;line-height:1.4;margin:4px 0 0}.ai14-section-title>p{max-width:300px;font-size:11px;text-align:right;margin:0}
+.ai14-projects{display:grid;gap:14px}.ai14-project{border-radius:15px;border:1px solid #3d576b;background:#12273a;overflow:hidden}.ai14-project-heading{display:flex;align-items:center;justify-content:space-between;gap:13px;padding:20px 22px 16px;border-bottom:1px solid #314d61}.ai14-project-heading>div{min-width:0}.ai14-project-heading h3{font-size:21px;line-height:1.4;margin:7px 0 3px}.ai14-project-heading p{margin:0;font-size:12px}.ai14-number{font-size:13px;background:#0e5148;color:#c8f7e8;border:1px solid #468f7b;border-radius:7px;padding:4px 7px;margin-right:9px}
+.ai14-columns{display:grid;grid-template-columns:1fr 1.15fr;gap:0}.ai14-highlight,.ai14-use{padding:19px 22px}.ai14-highlight{background:#103a3c;border-right:1px solid #356d67}.ai14-label{color:#9af0d6;font-size:11px;font-weight:850;letter-spacing:.03em}.ai14-highlight strong{font-size:16px;display:block;line-height:1.5;margin:8px 0 9px;color:white}.ai14-highlight p{font-size:12px;line-height:1.85;margin:0}.ai14-use ul{font-size:12px;line-height:1.7;padding-left:18px;color:var(--sub);margin:9px 0 0}.ai14-use li+li{margin-top:8px}.ai14-result{font-size:11px;border-top:1px solid #35516a;padding-top:10px;margin-top:14px}.ai14-result b{color:var(--aqua);margin-right:7px}.ai14-evidence b{color:#f0d3a3}
+.ai14-summary{margin:19px 0;background:linear-gradient(100deg,#0d3738,#163649);border:1px solid #458378;border-radius:15px;padding:22px 24px}.ai14-summary strong{display:block;margin:8px 0;font-size:17px;line-height:1.5}.ai14-summary p{margin:0;font-size:12px;line-height:1.7}
+@media(max-width:880px){.ai14-columns{grid-template-columns:1fr}.ai14-highlight{border-right:0;border-bottom:1px solid #356d67}.ai14-section-title{display:block}.ai14-section-title>p{text-align:left;max-width:none;margin-top:7px}}
+@media(max-width:580px){.ai14-hero,.ai14-foundation{padding:19px}.ai14-headline-stats{grid-template-columns:1fr;gap:7px}.ai14-headline-stats>div{padding:10px 12px}.ai14-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.ai14-project-heading{padding:16px;align-items:flex-start;flex-direction:column}.ai14-project-heading h3{font-size:18px}.ai14-highlight,.ai14-use{padding:17px}.ai14-section-title h2{font-size:19px}.ai14-summary{padding:18px}}
+@media print{.ai14-hero,.ai14-foundation,.ai14-project,.ai14-highlight,.ai14-use,.ai14-summary,.ai14-project-heading h3,.ai14-highlight strong,.ai14-summary strong{color:#111!important}}
+
+/* v16 - priority projects, explicit implementation-vs-design distinction */
+.architecture{padding:15px 19px;margin-top:16px;border:1px solid #428276;background:#123f44;border-radius:12px;display:grid;gap:5px}.architecture b{font-size:12px;color:#9cf4df}.architecture span{font-size:14px;font-weight:700;color:#f4fbff;line-height:1.8;word-break:keep-all}
+/* v15 - keep dashboard architecture, make annual project details scan-friendly */
+.readable-case .project-banner{padding-bottom:24px}
+.readable-case .project-banner h3{font-size:clamp(23px,2.4vw,33px);line-height:1.3;letter-spacing:-.035em}
+.readable-case .case-oneline{font-size:14px;line-height:1.75;max-width:820px;color:#f1f6fa}
+.quick-grid{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:14px;margin:17px 0}
+.quick-box{background:#132e42;border:1px solid #37566a;padding:23px;border-radius:14px;min-width:0}
+.quick-box .quick-number{font-size:12px;letter-spacing:.02em;font-weight:850;color:#7de3d4}
+.quick-box p{font-size:14px;line-height:1.8;color:#ecf3fb;margin:12px 0 0;word-break:keep-all}
+.quick-box ul{margin:12px 0 0;padding-left:19px;font-size:14px;line-height:1.78;color:#edf4fa;word-break:keep-all}
+.quick-box li+li{margin-top:11px}
+.quick-box.main-work{background:#123c42;border-color:#397c75}
+.quick-box.outcome{background:#20344a}
+.simple-status{display:inline-flex;margin-top:14px}
+.engineering-more{margin:17px 0 8px;background:#0e2436;border:1px solid #365064;border-radius:12px;overflow:hidden}
+.engineering-more summary{cursor:pointer;list-style:none;padding:16px 20px;color:#d5e8f8;font-size:13px;font-weight:750;display:flex;justify-content:space-between;gap:15px}
+.engineering-more summary::-webkit-details-marker{display:none}
+.engineering-inner{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;padding:0px 20px 16px}
+.engineering-inner p{margin:0;padding:14px;border:1px solid #2f4658;border-radius:9px;color:#c2d0df;line-height:1.75;font-size:12px;word-break:keep-all}
+.engineering-inner p b{display:block;color:#9be9d7;margin-bottom:5px}
+.engineering-inner .proof-source{grid-column:1/-1;color:#9baebf}
+.project-tab small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5;margin-top:6px}
+@media(max-width:1150px){.quick-grid{grid-template-columns:1fr 1fr}.quick-box.outcome{grid-column:1/-1}}
+@media(max-width:730px){.quick-grid{grid-template-columns:1fr}.quick-box.outcome{grid-column:auto}.quick-box{padding:18px}.engineering-inner{grid-template-columns:1fr}.engineering-inner .proof-source{grid-column:auto}.readable-case .project-banner h3{font-size:24px}}
+@media print{.quick-box,.engineering-more{background:#fff!important;color:#111!important;border:1px solid #aaa}.quick-box p,.quick-box ul,.engineering-inner p{color:#111!important}.engineering-more:not([open]) .engineering-inner{display:grid}}
+
+/* v37 - project-scoped AI agent roles */
+.ai37-agent-section{margin:18px 0 23px;background:#0f2032;border:1px solid #35536b;border-radius:16px;padding:23px}
+.ai37-agent-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:14px}
+.ai37-agent-head h2{font-size:21px;margin:5px 0 0}
+.ai37-agent-head p{font-size:11px;max-width:640px;margin:0;color:var(--muted);line-height:1.7;text-align:right}
+.ai37-agent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ai37-agent-card{background:#10283a;border:1px solid #34536a;border-radius:12px;overflow:hidden}
+.ai37-agent-card summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.ai37-agent-card summary::-webkit-details-marker{display:none}
+.ai37-agent-card summary strong{font-size:13px;color:#f1f7fb}
+.ai37-agent-card summary span{font-size:10px;color:var(--aqua);font-weight:820;white-space:nowrap}
+.ai37-agent-body{padding:0 17px 16px;border-top:1px solid #29465c}
+.ai37-agent-group{margin-top:13px}
+.ai37-agent-group>strong{display:block;color:var(--aqua);font-size:10px;letter-spacing:.08em;margin-bottom:7px}
+.ai37-agent-list{display:grid;gap:6px}
+.ai37-agent-item{display:grid;grid-template-columns:minmax(130px,.8fr) minmax(0,1.4fr);gap:10px;padding:8px 10px;background:#0d1c2b;border:1px solid #2a4357;border-radius:8px}
+.ai37-agent-item code{font-size:10px;color:#d9eaff;word-break:break-word}
+.ai37-agent-item span{font-size:10px;color:#b8c9d8;line-height:1.55}
+.ai37-agent-note{font-size:10px;color:#96aabd;margin-top:11px;line-height:1.65}
+.ai37-scope-note{margin:10px 0 0;padding:10px 12px;border-left:3px solid #69bba9;background:#113238;color:#cce0e4;font-size:11px;line-height:1.7}
+@media(max-width:900px){.ai37-agent-grid{grid-template-columns:1fr}.ai37-agent-head{display:block}.ai37-agent-head p{text-align:left;max-width:none;margin-top:6px}}
+@media(max-width:560px){.ai37-agent-section{padding:17px}.ai37-agent-item{grid-template-columns:1fr;gap:3px}}
+
+/* v43 UI refresh — content locked */
+:root{
+  --bg:#07111e;
+  --surface:#0d1b2b;
+  --surface-hi:#13283c;
+  --surface-low:#091522;
+  --ink:#f5f9fc;
+  --sub:#c9d6e3;
+  --muted:#8fa4b9;
+  --line:#213a50;
+  --line2:#31556f;
+  --aqua:#77e7cb;
+  --blue:#8eb8ff;
+  --gold:#f3d29a;
+  --radius:18px;
+  --shadow:0 22px 70px rgba(0,0,0,.28);
+  --soft-shadow:0 10px 32px rgba(0,0,0,.18);
+}
+
+html{background:var(--bg)}
+body{
+  background:
+    radial-gradient(circle at 82% 6%,rgba(35,117,112,.13),transparent 25rem),
+    radial-gradient(circle at 35% 38%,rgba(54,96,156,.08),transparent 31rem),
+    var(--bg);
+  letter-spacing:-.005em;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.16;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:linear-gradient(to bottom,black,transparent 88%);
+}
+
+/* frame / navigation */
+#app{grid-template-columns:258px minmax(0,1fr)}
+.side{
+  background:linear-gradient(180deg,rgba(10,26,42,.97),rgba(7,18,31,.98));
+  border-right-color:#28445b;
+  padding:28px 18px 22px;
+  box-shadow:10px 0 38px rgba(0,0,0,.12);
+}
+.identity{padding:0 7px}
+.monogram{
+  width:42px;height:42px;border-radius:13px;
+  background:linear-gradient(145deg,#174c43,#0d332f);
+  border-color:#3b806f;
+  box-shadow:inset 0 1px rgba(255,255,255,.08),0 8px 22px rgba(0,0,0,.2);
+}
+.identity strong{font-size:15px;letter-spacing:-.02em}
+.identity small{margin-top:2px}
+.sidenav{gap:7px}
+.nav{
+  position:relative;
+  padding:12px 13px 12px 15px;
+  border-radius:12px;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease,color .18s ease;
+}
+.nav:before{
+  content:"";
+  position:absolute;
+  left:5px;top:50%;
+  width:3px;height:0;
+  transform:translateY(-50%);
+  border-radius:9px;
+  background:var(--aqua);
+  transition:height .18s ease;
+}
+.nav:hover{transform:translateX(2px);background:#132c40;border-color:#294b63}
+.nav.active{
+  background:linear-gradient(90deg,#17394a,#132b40);
+  border-color:#3a6379;
+  box-shadow:0 8px 22px rgba(0,0,0,.16);
+}
+.nav.active:before{height:22px}
+.side-note{
+  margin:0 6px;
+  padding-top:18px;
+  line-height:1.8;
+}
+
+.topbar{
+  height:68px;
+  background:rgba(7,17,30,.78);
+  border-bottom-color:rgba(82,121,150,.28);
+  backdrop-filter:blur(18px) saturate(125%);
+  -webkit-backdrop-filter:blur(18px) saturate(125%);
+}
+.crumb{letter-spacing:.025em}
+.topmeta{opacity:.8}
+.content{
+  max-width:1450px;
+  padding-top:38px;
+}
+.content>div:not([hidden]){
+  animation:v43Enter .32s ease both;
+}
+@keyframes v43Enter{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+
+/* typography / hierarchy */
+.eyebrow{
+  color:#89ecd2;
+  letter-spacing:.18em;
+}
+h1{font-weight:840}
+h2,h3{font-weight:800}
+.section-head{
+  margin-top:42px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(72,106,133,.34);
+}
+.section-head h2{margin-bottom:0}
+.text-button{
+  padding:8px 12px;
+  border:1px solid #33576d;
+  border-radius:10px;
+  background:#0e2233;
+  transition:.18s ease;
+}
+.text-button:hover{background:#163246;border-color:#5e9c90;transform:translateY(-1px)}
+
+/* overview hero */
+.hero-grid{gap:18px;grid-template-columns:minmax(0,1.58fr) minmax(320px,.82fr)}
+.hero-card,.expertise{
+  border-color:#31516a;
+  box-shadow:var(--soft-shadow);
+}
+.hero-card{
+  position:relative;
+  overflow:hidden;
+  padding:38px 38px 33px;
+  background:
+    radial-gradient(circle at 91% 12%,rgba(72,207,177,.13),transparent 25rem),
+    linear-gradient(138deg,#142a40 0%,#0d1b2c 64%,#102a31 100%);
+}
+.hero-card:after{
+  content:"";
+  position:absolute;
+  width:260px;height:260px;
+  right:-155px;bottom:-165px;
+  border:1px solid rgba(119,231,203,.22);
+  border-radius:50%;
+  box-shadow:0 0 0 32px rgba(119,231,203,.025),0 0 0 64px rgba(119,231,203,.018);
+  pointer-events:none;
+}
+.hero-card h1{max-width:820px}
+.hero-card p{font-size:14px;line-height:1.9}
+.pills{gap:8px}
+.pill{
+  padding:6px 11px;
+  background:rgba(21,47,69,.72);
+  border-color:#355b74;
+  transition:.18s ease;
+}
+.pill:hover{border-color:#5ca994;color:#edfdf7;transform:translateY(-1px)}
+.expertise{
+  padding:27px;
+  background:linear-gradient(180deg,#0f2032,#0b1827);
+}
+.expert-row{padding:14px 2px}
+.expert-row:first-of-type{margin-top:5px}
+.expert-row strong{font-size:13px;color:#edf7fb}
+.expert-row small{line-height:1.6}
+
+/* AI shortcut */
+.ai-callout{
+  margin-top:20px;
+  padding:21px 24px;
+  border-color:#3e746e;
+  background:
+    linear-gradient(110deg,rgba(19,55,57,.95),rgba(15,35,55,.96));
+  box-shadow:var(--soft-shadow);
+}
+.ai-callout button,.ai-link{
+  border-radius:11px;
+  box-shadow:0 8px 20px rgba(0,0,0,.14);
+  transition:.18s ease;
+}
+.ai-callout button:hover,.ai-link:hover{transform:translateY(-2px)}
+
+/* year cards */
+.year-grid{gap:15px}
+.year-card{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border-radius:19px;
+  border-color:#2d4d66;
+  padding:25px;
+  min-height:398px;
+  background:
+    linear-gradient(145deg,rgba(20,43,65,.98),rgba(11,25,40,.99));
+  box-shadow:0 10px 28px rgba(0,0,0,.13);
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease;
+}
+.year-card:before{
+  content:"";
+  position:absolute;inset:0;
+  z-index:-1;
+  opacity:0;
+  background:radial-gradient(circle at 100% 0%,rgba(119,231,203,.16),transparent 48%);
+  transition:opacity .22s ease;
+}
+.year-card:hover{
+  transform:translateY(-6px);
+  border-color:#5e9c8e;
+  box-shadow:0 22px 48px rgba(0,0,0,.24);
+}
+.year-card:hover:before{opacity:1}
+.year-num{font-size:49px}
+.year-count{
+  padding:5px 9px;
+  border-color:#34766c;
+  background:#0d302d;
+}
+.year-title{font-size:20px}
+.year-desc{line-height:1.68}
+.tech-tag{
+  border-left-color:#5a99b4;
+  background:rgba(14,35,53,.88);
+  border-radius:0 7px 7px 0;
+  padding:6px 9px;
+}
+.year-action{
+  border-top:1px solid rgba(71,103,127,.34);
+  margin-top:18px;
+}
+
+/* career track */
+.career-track{gap:14px}
+.track-item{
+  border-color:#29465d;
+  border-top-color:#4e8fb2;
+  background:linear-gradient(180deg,#0c1b2b,#091623);
+  box-shadow:0 8px 24px rgba(0,0,0,.11);
+}
+.track-item b{font-size:14px}
+
+/* year detail */
+.year-intro{
+  position:relative;
+  overflow:hidden;
+  padding:29px;
+  border-color:#34536a;
+  background:linear-gradient(135deg,#142b41,#0e1d30);
+  box-shadow:var(--soft-shadow);
+}
+.year-intro:after{
+  content:"";
+  position:absolute;
+  right:-60px;top:-80px;
+  width:210px;height:210px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(119,231,203,.09),transparent 67%);
+  pointer-events:none;
+}
+.year-badge{color:#82ead0}
+.fact-grid{gap:11px}
+.fact{
+  padding:16px 17px;
+  border-color:#29475e;
+  background:linear-gradient(180deg,#0b1a29,#091521);
+  box-shadow:0 8px 22px rgba(0,0,0,.1);
+}
+.fact b{font-size:23px}
+.hook{
+  background:#112a3f;
+  border-color:#355c74;
+  border-radius:8px;
+}
+
+/* project navigation & panel */
+.project-layout{grid-template-columns:292px minmax(0,1fr);gap:16px}
+.project-menu{gap:8px;top:88px}
+.project-tab{
+  position:relative;
+  padding:14px 14px 14px 15px;
+  border-color:#253f55;
+  background:#0c1c2b;
+  border-radius:12px;
+  transition:.18s ease;
+}
+.project-tab:before{
+  content:"";
+  position:absolute;left:0;top:11px;bottom:11px;width:3px;
+  border-radius:0 5px 5px 0;
+  background:transparent;
+}
+.project-tab:hover{
+  transform:translateX(2px);
+  background:#132c40;
+  border-color:#385e75;
+}
+.project-tab.active{
+  background:linear-gradient(100deg,#17394a,#11283a);
+  border-color:#4f8379;
+  box-shadow:0 9px 22px rgba(0,0,0,.14);
+}
+.project-tab.active:before{background:var(--aqua)}
+.project-tab strong{font-size:12.5px}
+.detail-panel{
+  border-color:#2d4b62;
+  border-radius:17px;
+  box-shadow:var(--soft-shadow);
+  background:#0d1b2b;
+}
+.project-banner{
+  padding:27px;
+  background:
+    radial-gradient(circle at 95% 8%,rgba(119,231,203,.10),transparent 19rem),
+    linear-gradient(125deg,#173149,#102136);
+}
+.project-banner h3{font-size:clamp(24px,2.2vw,31px)}
+.status{
+  background:#40351f;
+  border-color:#6f5d36;
+}
+.tech-pills span{
+  border-color:#355871;
+  background:rgba(11,29,44,.38);
+  padding:5px 8px;
+  border-radius:7px;
+}
+.detail-sections{padding:19px;gap:12px}
+.detail-box{
+  padding:19px;
+  border-color:#29465d;
+  background:linear-gradient(180deg,#0b1928,#091522);
+  border-radius:13px;
+}
+.detail-box.emphasis{
+  border-left-width:4px;
+  background:linear-gradient(90deg,rgba(19,57,56,.46),#0a1827 38%);
+}
+.detail-box h4{margin-bottom:11px}
+.detail-box p,.detail-box ul{line-height:1.8}
+.detail-footer{
+  padding:14px 19px;
+  background:#0b1928;
+  border-top-color:#28455a;
+}
+
+/* readable-case cards */
+.quick-grid{gap:12px}
+.quick-box{
+  border-color:#2d5064;
+  border-radius:15px;
+  box-shadow:0 8px 22px rgba(0,0,0,.1);
+}
+.quick-box.main-work{
+  background:linear-gradient(180deg,#113b3f,#0d2b31);
+  border-color:#3b756e;
+}
+.quick-box.outcome{
+  background:linear-gradient(180deg,#193146,#122538);
+}
+.engineering-more{
+  border-color:#2b4b60;
+  background:#0b1d2d;
+}
+.engineering-more summary{
+  position:relative;
+  padding-right:46px;
+}
+.engineering-more summary:after{
+  content:"+";
+  position:absolute;right:18px;top:50%;
+  transform:translateY(-50%);
+  color:var(--aqua);
+  font-size:18px;
+  font-weight:400;
+}
+.engineering-more[open] summary:after{content:"−"}
+
+/* AI page */
+.ai14-hero{
+  padding:32px;
+  border-color:#477d76;
+  background:
+    radial-gradient(circle at 91% 12%,rgba(119,231,203,.12),transparent 22rem),
+    linear-gradient(120deg,#153247,#103837);
+  box-shadow:var(--soft-shadow);
+}
+.ai14-headline-stats{gap:12px}
+.ai14-headline-stats>div{
+  border-color:#35615f;
+  background:rgba(7,30,38,.7);
+  padding:15px 17px;
+}
+.ai14-foundation,.ai37-agent-section{
+  border-color:#2f5065;
+  box-shadow:0 10px 28px rgba(0,0,0,.11);
+}
+.ai14-flow{gap:10px}
+.ai14-flow span{
+  position:relative;
+  padding:11px 9px;
+  border-color:#3b746e;
+  background:#0c3039;
+}
+.ai37-agent-section{
+  padding:25px;
+  background:linear-gradient(180deg,#0d1e30,#0a1827);
+}
+.ai37-agent-grid{gap:12px}
+.ai37-agent-card{
+  border-color:#2b4a60;
+  border-radius:13px;
+  background:#0d2233;
+  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+.ai37-agent-card:hover{
+  border-color:#47766f;
+  box-shadow:0 10px 28px rgba(0,0,0,.14);
+}
+.ai37-agent-card summary{
+  position:relative;
+  padding:16px 42px 16px 17px;
+}
+.ai37-agent-card summary:after{
+  content:"+";
+  position:absolute;
+  right:17px;top:50%;
+  transform:translateY(-50%);
+  color:var(--aqua);
+  font-size:18px;
+  font-weight:400;
+}
+.ai37-agent-card[open] summary:after{content:"−"}
+.ai37-agent-card[open]{border-color:#47766f}
+.ai37-agent-item{
+  border-color:#263f53;
+  background:#091725;
+  padding:9px 11px;
+}
+.ai37-agent-item code{
+  color:#9fead9;
+  font-weight:750;
+}
+.ai14-projects{gap:16px}
+.ai14-project{
+  border-color:#2e4c61;
+  border-radius:17px;
+  background:#0d1e30;
+  box-shadow:0 10px 28px rgba(0,0,0,.11);
+}
+.ai14-project-heading{
+  padding:22px 24px 18px;
+  background:linear-gradient(180deg,#10283b,#0d1e30);
+}
+.ai14-number{
+  background:#0c443e;
+  border-color:#3e7e70;
+}
+.ai14-highlight{
+  background:linear-gradient(180deg,#0d3537,#0b2a2e);
+  border-right-color:#34635e;
+}
+.ai14-use{background:#0b1928}
+.ai14-result{
+  padding:12px 13px;
+  border:1px solid #294b5f;
+  border-radius:9px;
+  background:#0e2434;
+}
+.ai14-summary{
+  box-shadow:0 10px 28px rgba(0,0,0,.12);
+}
+
+/* subtle interactive polish */
+.year-card,.track-item,.fact,.detail-panel,.ai14-project,.ai37-agent-card,.hero-card,.expertise{
+  will-change:transform;
+}
+button{transition:color .18s ease,background .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+button:active{transform:translateY(1px)}
+
+/* responsive */
+@media(max-width:1180px){
+  #app{grid-template-columns:224px minmax(0,1fr)}
+  .side{padding-inline:14px}
+  .hero-grid{grid-template-columns:1fr}
+  .year-grid{grid-template-columns:1fr}
+  .year-card{min-height:0}
+}
+@media(max-width:850px){
+  body:before{opacity:.1}
+  #app{display:block}
+  .side{
+    position:sticky;top:0;
+    height:auto;
+    padding:9px 12px;
+    border-right:0;
+    border-bottom:1px solid #29465c;
+    box-shadow:0 10px 28px rgba(0,0,0,.2);
+    backdrop-filter:blur(18px);
+  }
+  .sidenav{
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding-bottom:1px;
+  }
+  .sidenav::-webkit-scrollbar{display:none}
+  .nav{white-space:nowrap;padding:8px 10px}
+  .nav:before{display:none}
+  .nav:hover{transform:none}
+  .topbar{height:48px}
+  .content{padding-top:23px}
+  .project-layout{grid-template-columns:1fr}
+  .project-menu{
+    display:flex;
+    overflow-x:auto;
+    gap:8px;
+    padding-bottom:4px;
+    scrollbar-width:none;
+  }
+  .project-menu::-webkit-scrollbar{display:none}
+  .project-tab{
+    min-width:220px;
+    flex:0 0 220px;
+  }
+  .project-tab:hover{transform:none}
+  .ai37-agent-grid{grid-template-columns:1fr}
+}
+@media(max-width:580px){
+  .content{padding:16px 13px 48px}
+  .hero-card,.expertise,.ai14-hero,.ai14-foundation,.ai37-agent-section{padding:20px}
+  .hero-card h1{font-size:31px}
+  .year-card{padding:20px}
+  .year-num{font-size:42px}
+  .year-count{font-size:9px}
+  .ai-callout{display:block;padding:18px}
+  .ai-callout button{margin-top:14px;width:100%}
+  .project-banner{padding:20px}
+  .quick-box{padding:18px}
+  .ai14-project-heading{padding:18px}
+  .ai14-highlight,.ai14-use{padding:17px}
+  .ai37-agent-card summary{padding:14px 40px 14px 14px}
+  .ai37-agent-body{padding:0 14px 14px}
+  .detail-sections{padding:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  .content>div:not([hidden]){animation:none}
+  *,*:before,*:after{scroll-behavior:auto!important;transition:none!important}
+}
+@media print{
+  body:before{display:none}
+  .hero-card,.expertise,.year-card,.detail-panel,.ai14-project,.ai37-agent-card{box-shadow:none!important}
+}
+
+
+/* v44 MONOCHROME — black & white editorial UI, content locked */
+:root{
+  --bg:#f4f4f2 !important;
+  --surface:#ffffff !important;
+  --surface-hi:#ffffff !important;
+  --surface-low:#ececea !important;
+  --ink:#111111 !important;
+  --sub:#343434 !important;
+  --muted:#747474 !important;
+  --line:#d8d8d5 !important;
+  --line2:#bdbdb8 !important;
+  --aqua:#111111 !important;
+  --blue:#111111 !important;
+  --gold:#111111 !important;
+  --radius:12px !important;
+  --shadow:0 18px 48px rgba(0,0,0,.08) !important;
+  --soft-shadow:0 8px 24px rgba(0,0,0,.055) !important;
+}
+
+html{background:#f4f4f2 !important;color-scheme:light}
+body{
+  background:#f4f4f2 !important;
+  color:#111 !important;
+}
+body:before{display:none!important}
+::selection{background:#111!important;color:#fff!important}
+
+/* layout */
+#app{grid-template-columns:250px minmax(0,1fr)!important}
+.side{
+  background:#0d0d0d!important;
+  color:#fff!important;
+  border-right:0!important;
+  box-shadow:none!important;
+}
+.identity strong,.identity small,.side-note,.side-note b,.side-note strong{color:#fff!important}
+.identity small,.side-note{opacity:.66}
+.monogram{
+  background:#fff!important;
+  color:#111!important;
+  border:1px solid #fff!important;
+  box-shadow:none!important;
+}
+.sidenav{gap:4px!important}
+.nav{
+  color:#bdbdbd!important;
+  border-color:transparent!important;
+  background:transparent!important;
+  border-radius:8px!important;
+}
+.nav:before{background:#fff!important}
+.nav:hover{
+  background:#1c1c1c!important;
+  border-color:#1c1c1c!important;
+  color:#fff!important;
+}
+.nav.active{
+  background:#fff!important;
+  color:#111!important;
+  border-color:#fff!important;
+  box-shadow:none!important;
+}
+.nav.active:before{background:#111!important}
+.topbar{
+  background:rgba(244,244,242,.92)!important;
+  border-bottom:1px solid #d8d8d5!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+  color:#111!important;
+}
+.crumb,.topmeta{color:#555!important}
+.content{max-width:1460px!important}
+
+/* typography */
+.eyebrow{
+  color:#111!important;
+  font-weight:800!important;
+  letter-spacing:.16em!important;
+}
+h1,h2,h3,h4,strong,b{color:#111!important}
+p,li,span,small{color:inherit}
+.accent{color:#111!important}
+.text-button{
+  color:#111!important;
+  background:#fff!important;
+  border:1px solid #bbb!important;
+  box-shadow:none!important;
+}
+.text-button:hover{
+  color:#fff!important;
+  background:#111!important;
+  border-color:#111!important;
+}
+.section-head{border-bottom-color:#d7d7d2!important}
+
+/* overview */
+.hero-card,.expertise{
+  background:#fff!important;
+  border:1px solid #d9d9d4!important;
+  box-shadow:var(--soft-shadow)!important;
+}
+.hero-card{
+  background:#fff!important;
+}
+.hero-card:after{display:none!important}
+.hero-card p,.expert-row small{color:#666!important}
+.pill{
+  color:#333!important;
+  background:#f5f5f3!important;
+  border:1px solid #d7d7d2!important;
+  border-radius:999px!important;
+}
+.pill:hover{
+  color:#fff!important;
+  background:#111!important;
+  border-color:#111!important;
+  transform:none!important;
+}
+.expert-row{border-bottom-color:#e3e3df!important}
+.expert-row strong{color:#111!important}
+.ai-callout{
+  background:#111!important;
+  border:1px solid #111!important;
+  box-shadow:none!important;
+}
+.ai-callout *{color:#fff!important}
+.ai-callout button,.ai-link{
+  color:#111!important;
+  background:#fff!important;
+  border-color:#fff!important;
+  box-shadow:none!important;
+}
+.ai-callout button:hover,.ai-link:hover{
+  color:#fff!important;
+  background:#111!important;
+  border-color:#fff!important;
+}
+
+/* year overview */
+.year-card{
+  background:#fff!important;
+  border:1px solid #d5d5d1!important;
+  box-shadow:none!important;
+  border-radius:12px!important;
+}
+.year-card:before{display:none!important}
+.year-card:hover{
+  transform:translateY(-3px)!important;
+  border-color:#111!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.08)!important;
+}
+.year-num{color:#111!important}
+.year-count{
+  color:#fff!important;
+  background:#111!important;
+  border-color:#111!important;
+}
+.year-desc,.year-subtitle{color:#666!important}
+.tech-tag{
+  color:#333!important;
+  background:#f4f4f1!important;
+  border-left:3px solid #111!important;
+}
+.year-action{
+  color:#111!important;
+  border-top-color:#deded9!important;
+}
+.career-track{gap:12px!important}
+.track-item{
+  background:#fff!important;
+  border:1px solid #d6d6d1!important;
+  border-top:3px solid #111!important;
+  box-shadow:none!important;
+}
+.track-item p,.track-item small{color:#666!important}
+
+/* year header / facts */
+.year-intro{
+  background:#111!important;
+  color:#fff!important;
+  border:1px solid #111!important;
+  box-shadow:none!important;
+}
+.year-intro:after{display:none!important}
+.year-intro h1,.year-intro h2,.year-intro h3,.year-intro strong,.year-intro b,.year-intro p,.year-intro span{
+  color:#fff!important;
+}
+.year-badge{
+  color:#111!important;
+  background:#fff!important;
+  border-color:#fff!important;
+}
+.fact{
+  background:#fff!important;
+  border:1px solid #d8d8d4!important;
+  box-shadow:none!important;
+}
+.fact b{color:#111!important}
+.fact>span{color:#777!important}
+.hook{
+  color:#222!important;
+  background:#f0f0ed!important;
+  border:1px solid #d6d6d1!important;
+}
+
+/* project tabs + detail */
+.project-tab{
+  background:#fff!important;
+  color:#333!important;
+  border:1px solid #d7d7d2!important;
+  box-shadow:none!important;
+}
+.project-tab:before{background:transparent!important}
+.project-tab:hover{
+  color:#111!important;
+  background:#f0f0ed!important;
+  border-color:#999!important;
+}
+.project-tab.active{
+  color:#fff!important;
+  background:#111!important;
+  border-color:#111!important;
+  box-shadow:none!important;
+}
+.project-tab.active:before{background:#fff!important}
+.project-tab.active strong,.project-tab.active span,.project-tab.active small{color:#fff!important}
+.detail-panel{
+  background:#fff!important;
+  border:1px solid #d7d7d2!important;
+  box-shadow:none!important;
+}
+.project-banner{
+  background:#111!important;
+  color:#fff!important;
+}
+.project-banner *{color:#fff!important}
+.status{
+  color:#111!important;
+  background:#fff!important;
+  border-color:#fff!important;
+}
+.tech-pills span{
+  color:#fff!important;
+  background:transparent!important;
+  border-color:#4a4a4a!important;
+}
+.detail-sections{background:#fff!important}
+.detail-box{
+  background:#fafaf8!important;
+  border:1px solid #deded9!important;
+}
+.detail-box h4{color:#111!important}
+.detail-box p,.detail-box li{color:#444!important}
+.detail-box.emphasis{
+  background:#f3f3f0!important;
+  border-left:4px solid #111!important;
+}
+.detail-footer{
+  background:#f3f3f0!important;
+  border-top:1px solid #dcdcd8!important;
+  color:#555!important;
+}
+
+/* quick boxes */
+.quick-box{
+  background:#fff!important;
+  border:1px solid #d8d8d3!important;
+  box-shadow:none!important;
+}
+.quick-box.main-work,.quick-box.outcome{
+  background:#f3f3f0!important;
+  border-color:#cfcfca!important;
+}
+.quick-box h4,.quick-box strong{color:#111!important}
+.quick-box p,.quick-box li{color:#444!important}
+.engineering-more{
+  background:#fff!important;
+  border:1px solid #d8d8d3!important;
+}
+.engineering-more summary{color:#111!important}
+.engineering-more summary:after{color:#111!important}
+
+/* AI page */
+.ai14-hero{
+  background:#111!important;
+  color:#fff!important;
+  border:1px solid #111!important;
+  box-shadow:none!important;
+}
+.ai14-hero *{color:#fff!important}
+.ai14-headline-stats>div{
+  background:#1b1b1b!important;
+  border-color:#363636!important;
+}
+.ai14-foundation,.ai37-agent-section{
+  background:#fff!important;
+  border:1px solid #d7d7d2!important;
+  box-shadow:none!important;
+}
+.ai14-foundation p,.ai37-agent-section p{color:#555!important}
+.ai14-flow span{
+  color:#111!important;
+  background:#f2f2ef!important;
+  border:1px solid #d5d5d0!important;
+}
+.ai37-agent-card{
+  background:#fff!important;
+  border:1px solid #d8d8d3!important;
+  box-shadow:none!important;
+}
+.ai37-agent-card:hover,.ai37-agent-card[open]{
+  border-color:#111!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+.ai37-agent-card summary strong{color:#111!important}
+.ai37-agent-card summary span{color:#666!important}
+.ai37-agent-card summary:after{color:#111!important}
+.ai37-agent-body{border-top-color:#dededa!important}
+.ai37-agent-group>strong{color:#111!important}
+.ai37-agent-item{
+  background:#f6f6f3!important;
+  border:1px solid #deded9!important;
+}
+.ai37-agent-item code{color:#111!important}
+.ai37-agent-item span{color:#555!important}
+.ai14-project{
+  background:#fff!important;
+  border:1px solid #d6d6d1!important;
+  box-shadow:none!important;
+}
+.ai14-project-heading{
+  background:#f2f2ef!important;
+  border-bottom:1px solid #dcdcd7!important;
+}
+.ai14-number{
+  color:#fff!important;
+  background:#111!important;
+  border-color:#111!important;
+}
+.ai14-highlight{
+  background:#111!important;
+  border-right:0!important;
+}
+.ai14-highlight *{color:#fff!important}
+.ai14-use{background:#fff!important}
+.ai14-use p,.ai14-use li{color:#444!important}
+.ai14-result{
+  background:#f2f2ef!important;
+  border:1px solid #d6d6d1!important;
+  color:#222!important;
+}
+.ai14-result b{color:#111!important}
+.ai14-summary{
+  background:#111!important;
+  color:#fff!important;
+  border-color:#111!important;
+  box-shadow:none!important;
+}
+.ai14-summary *{color:#fff!important}
+
+/* tables / generic borders */
+table{border-color:#d7d7d2!important}
+th{
+  color:#fff!important;
+  background:#111!important;
+  border-color:#2c2c2c!important;
+}
+td{
+  color:#333!important;
+  background:#fff!important;
+  border-color:#dfdfda!important;
+}
+code{
+  color:#111!important;
+  background:#f0f0ed!important;
+}
+
+/* interaction */
+button{box-shadow:none!important}
+button:focus-visible,summary:focus-visible,.nav:focus-visible,.project-tab:focus-visible{
+  outline:2px solid #111!important;
+  outline-offset:2px!important;
+}
+
+/* mobile */
+@media(max-width:850px){
+  .side{
+    background:#111!important;
+    border-bottom:1px solid #222!important;
+  }
+  .nav{color:#c9c9c9!important}
+  .nav.active{color:#111!important;background:#fff!important}
+  .topbar{background:rgba(244,244,242,.96)!important}
+}
+@media(max-width:580px){
+  .hero-card,.expertise,.ai14-foundation,.ai37-agent-section{border-radius:10px!important}
+  .year-card,.detail-panel,.ai14-project{border-radius:10px!important}
+}
+
+/* remove previous aqua/blue glow remnants */
+[class*="accent"],[class*="badge"]{text-shadow:none!important}
+
+
+/* v45 cover section */
+#overview{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+.cover-hero{
+  position:relative;
+  min-height:calc(100vh - 110px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+  padding:42px;
+  border:1px solid #d8d8d3;
+  border-radius:14px;
+  background:
+    linear-gradient(135deg,#ffffff 0%,#f7f7f4 100%);
+  overflow:hidden;
+}
+.cover-hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to bottom, transparent 0 92%, #111 92% 92.6%, transparent 92.6%),
+    linear-gradient(to right, transparent 0 88%, rgba(17,17,17,.08) 88% 88.2%, transparent 88.2%);
+  pointer-events:none;
+}
+.cover-main{
+  position:relative;
+  z-index:1;
+  max-width:760px;
+}
+.cover-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#111;
+  margin-bottom:14px;
+}
+.cover-kicker:before{
+  content:"";
+  width:34px;
+  height:1px;
+  background:#111;
+}
+.cover-title{
+  margin:0;
+  font-size:clamp(44px,8vw,88px);
+  line-height:.95;
+  letter-spacing:-.045em;
+  font-weight:900;
+}
+.cover-title-sub{
+  display:block;
+  margin-top:10px;
+  font-size:clamp(18px,2vw,24px);
+  line-height:1.35;
+  font-weight:700;
+  letter-spacing:-.02em;
+}
+.cover-copy{
+  margin:22px 0 0;
+  max-width:650px;
+  font-size:15px;
+  line-height:1.9;
+  color:#404040;
+}
+.cover-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:22px;
+}
+.cover-meta span{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 12px;
+  border:1px solid #d7d7d2;
+  border-radius:999px;
+  background:#fff;
+  color:#222;
+  font-size:12px;
+  font-weight:650;
+}
+.cover-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:28px;
+}
+.cover-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:46px;
+  padding:0 18px;
+  border-radius:999px;
+  border:1px solid #111;
+  font-weight:800;
+  font-size:13px;
+  letter-spacing:-.01em;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.cover-btn.primary{
+  background:#111;
+  color:#fff;
+}
+.cover-btn.primary:hover{
+  background:#fff;
+  color:#111;
+}
+.cover-btn.secondary{
+  background:#fff;
+  color:#111;
+  border-color:#c8c8c4;
+}
+.cover-btn.secondary:hover{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+.cover-side{
+  position:relative;
+  z-index:1;
+  width:min(100%, 370px);
+  align-self:stretch;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:18px;
+  padding:24px;
+  border-radius:12px;
+  background:#111;
+  color:#fff;
+}
+.cover-side-top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+}
+.cover-side-label{
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#fff;
+  opacity:.72;
+}
+.cover-side-year{
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:.02em;
+}
+.cover-side-list{
+  display:grid;
+  gap:12px;
+}
+.cover-side-item{
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.14);
+}
+.cover-side-item strong{
+  display:block;
+  font-size:14px;
+  color:#fff;
+  margin-bottom:4px;
+}
+.cover-side-item span{
+  display:block;
+  font-size:12px;
+  line-height:1.7;
+  color:rgba(255,255,255,.72);
+}
+.cover-scroll{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:12px;
+  font-weight:700;
+  color:rgba(255,255,255,.78);
+}
+.cover-scroll:before{
+  content:"↓";
+  font-size:16px;
+  line-height:1;
+}
+@media(max-width:980px){
+  .cover-hero{
+    min-height:auto;
+    flex-direction:column;
+    align-items:flex-start;
+    padding:28px;
+  }
+  .cover-side{
+    width:100%;
+  }
+}
+@media(max-width:580px){
+  #overview{gap:18px}
+  .cover-hero{
+    padding:22px 18px;
+    border-radius:10px;
+  }
+  .cover-copy{
+    font-size:14px;
+    line-height:1.8;
+  }
+  .cover-meta span{
+    font-size:11px;
+    padding:7px 10px;
+  }
+  .cover-actions{
+    flex-direction:column;
+  }
+  .cover-btn{
+    width:100%;
+  }
+  .cover-side{
+    padding:18px;
+    border-radius:10px;
+  }
+}
+
+
+/* v46 GRAY + GREEN palette — content locked */
+:root{
+  --bg:#eef1ed !important;
+  --surface:#f8faf7 !important;
+  --surface-hi:#ffffff !important;
+  --surface-low:#e3e8e1 !important;
+  --ink:#1e2923 !important;
+  --sub:#45524a !important;
+  --muted:#7a857e !important;
+  --line:#cfd7d0 !important;
+  --line2:#aebbb1 !important;
+  --aqua:#6f8f7a !important;
+  --blue:#6f8f7a !important;
+  --gold:#9b8f73 !important;
+  --radius:13px !important;
+  --shadow:0 18px 46px rgba(35,53,43,.10) !important;
+  --soft-shadow:0 8px 24px rgba(35,53,43,.07) !important;
+}
+
+html{background:#eef1ed!important;color-scheme:light}
+body{
+  background:
+    radial-gradient(circle at 85% 10%,rgba(91,123,103,.08),transparent 24rem),
+    #eef1ed !important;
+  color:#1e2923!important;
+}
+body:before{display:none!important}
+::selection{background:#284936!important;color:#fff!important}
+
+/* Sidebar / navigation */
+.side{
+  background:#24362c!important;
+  color:#f7faf7!important;
+  border-right:1px solid #31483a!important;
+  box-shadow:none!important;
+}
+.identity strong,.identity small,.side-note,.side-note b,.side-note strong{color:#f7faf7!important}
+.identity small,.side-note{opacity:.72}
+.monogram{
+  background:#dfe8e1!important;
+  color:#24362c!important;
+  border:1px solid #dfe8e1!important;
+  box-shadow:none!important;
+}
+.nav{
+  color:#c6d0c8!important;
+  background:transparent!important;
+  border-color:transparent!important;
+  border-radius:9px!important;
+}
+.nav:before{background:#a6b9ab!important}
+.nav:hover{
+  color:#fff!important;
+  background:#30463a!important;
+  border-color:#30463a!important;
+}
+.nav.active{
+  color:#213329!important;
+  background:#dfe8e1!important;
+  border-color:#dfe8e1!important;
+  box-shadow:none!important;
+}
+.nav.active:before{background:#526d5b!important}
+.topbar{
+  background:rgba(238,241,237,.93)!important;
+  border-bottom:1px solid #cfd7d0!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+}
+.crumb,.topmeta{color:#56645b!important}
+
+/* Typography */
+.eyebrow{
+  color:#526d5b!important;
+  font-weight:800!important;
+}
+h1,h2,h3,h4,strong,b{color:#1e2923!important}
+.accent{color:#385742!important}
+.text-button{
+  color:#294234!important;
+  background:#f8faf7!important;
+  border-color:#b8c3ba!important;
+}
+.text-button:hover{
+  color:#fff!important;
+  background:#355342!important;
+  border-color:#355342!important;
+}
+.section-head{border-bottom-color:#cfd7d0!important}
+
+/* Cover */
+.cover-hero{
+  background:
+    linear-gradient(135deg,#f8faf7 0%,#e9eee9 100%)!important;
+  border-color:#cbd4cc!important;
+  box-shadow:var(--soft-shadow)!important;
+}
+.cover-hero:before{
+  background:
+    linear-gradient(to bottom, transparent 0 92%, #45614f 92% 92.6%, transparent 92.6%),
+    linear-gradient(to right, transparent 0 88%, rgba(69,97,79,.08) 88% 88.2%, transparent 88.2%)!important;
+}
+.cover-kicker{color:#526d5b!important}
+.cover-kicker:before{background:#526d5b!important}
+.cover-copy{color:#536159!important}
+.cover-meta span{
+  background:#f9fbf8!important;
+  color:#33483b!important;
+  border-color:#cbd5cd!important;
+}
+.cover-btn.primary{
+  background:#2e4a39!important;
+  color:#fff!important;
+  border-color:#2e4a39!important;
+}
+.cover-btn.primary:hover{
+  background:#f8faf7!important;
+  color:#2e4a39!important;
+}
+.cover-btn.secondary{
+  background:#f8faf7!important;
+  color:#2e4a39!important;
+  border-color:#aebbb1!important;
+}
+.cover-btn.secondary:hover{
+  background:#2e4a39!important;
+  color:#fff!important;
+  border-color:#2e4a39!important;
+}
+.cover-side{
+  background:#2b4034!important;
+  color:#f7faf7!important;
+}
+.cover-side *{color:#f7faf7!important}
+.cover-side-item{border-top-color:rgba(255,255,255,.16)!important}
+
+/* Overview */
+.hero-card,.expertise{
+  background:#f8faf7!important;
+  border-color:#cfd7d0!important;
+  box-shadow:var(--soft-shadow)!important;
+}
+.hero-card{
+  background:
+    linear-gradient(145deg,#f9fbf8 0%,#edf2ed 100%)!important;
+}
+.hero-card p,.expert-row small{color:#667269!important}
+.pill{
+  background:#e9eee9!important;
+  color:#3f5346!important;
+  border-color:#c6d0c8!important;
+}
+.pill:hover{
+  background:#3d5a48!important;
+  color:#fff!important;
+  border-color:#3d5a48!important;
+}
+.expert-row{border-bottom-color:#d8ded9!important}
+.ai-callout{
+  background:#31493b!important;
+  border-color:#31493b!important;
+}
+.ai-callout *{color:#f7faf7!important}
+.ai-callout button,.ai-link{
+  background:#dfe8e1!important;
+  color:#294234!important;
+  border-color:#dfe8e1!important;
+}
+.ai-callout button:hover,.ai-link:hover{
+  background:#f8faf7!important;
+  color:#294234!important;
+}
+
+/* Year cards */
+.year-card{
+  background:#f8faf7!important;
+  border-color:#cfd7d0!important;
+  box-shadow:none!important;
+}
+.year-card:hover{
+  border-color:#6f8f7a!important;
+  box-shadow:0 14px 34px rgba(45,72,56,.10)!important;
+}
+.year-count{
+  background:#3c5947!important;
+  color:#fff!important;
+  border-color:#3c5947!important;
+}
+.year-desc,.year-subtitle{color:#6c766f!important}
+.tech-tag{
+  background:#e8ede8!important;
+  color:#3f4f44!important;
+  border-left-color:#587361!important;
+}
+.year-action{
+  color:#355342!important;
+  border-top-color:#d8ded9!important;
+}
+.track-item{
+  background:#f8faf7!important;
+  border-color:#cfd7d0!important;
+  border-top-color:#5f7d68!important;
+}
+
+/* Year detail */
+.year-intro{
+  background:#31493b!important;
+  color:#f7faf7!important;
+  border-color:#31493b!important;
+}
+.year-intro *{color:#f7faf7!important}
+.year-badge{
+  background:#dfe8e1!important;
+  color:#2a4435!important;
+  border-color:#dfe8e1!important;
+}
+.fact{
+  background:#f8faf7!important;
+  border-color:#cfd7d0!important;
+}
+.fact>span{color:#7a857e!important}
+.hook{
+  background:#e8ede8!important;
+  color:#3f4f44!important;
+  border-color:#cbd4cc!important;
+}
+
+/* Project navigation */
+.project-tab{
+  background:#f8faf7!important;
+  color:#46534a!important;
+  border-color:#cfd7d0!important;
+}
+.project-tab:hover{
+  background:#e6ece6!important;
+  border-color:#9ead9f!important;
+}
+.project-tab.active{
+  background:#365340!important;
+  color:#fff!important;
+  border-color:#365340!important;
+}
+.project-tab.active *{color:#fff!important}
+.project-tab.active:before{background:#c7d5ca!important}
+.detail-panel{
+  background:#f8faf7!important;
+  border-color:#cbd4cc!important;
+}
+.project-banner{
+  background:#365340!important;
+  color:#fff!important;
+}
+.project-banner *{color:#fff!important}
+.status{
+  background:#dce6de!important;
+  color:#2d4737!important;
+  border-color:#dce6de!important;
+}
+.tech-pills span{
+  border-color:#708779!important;
+  color:#f7faf7!important;
+}
+.detail-sections{background:#f8faf7!important}
+.detail-box{
+  background:#f3f6f2!important;
+  border-color:#d2d9d3!important;
+}
+.detail-box p,.detail-box li{color:#4f5c54!important}
+.detail-box.emphasis{
+  background:#e8eee9!important;
+  border-left-color:#587361!important;
+}
+.detail-footer{
+  background:#e9eee9!important;
+  color:#59675e!important;
+  border-top-color:#d1d9d2!important;
+}
+
+/* Quick cards */
+.quick-box{
+  background:#f8faf7!important;
+  border-color:#cfd7d0!important;
+}
+.quick-box.main-work,.quick-box.outcome{
+  background:#edf2ed!important;
+  border-color:#c6d1c8!important;
+}
+.quick-box p,.quick-box li{color:#4e5b53!important}
+.engineering-more{
+  background:#f8faf7!important;
+  border-color:#cfd7d0!important;
+}
+.engineering-more summary:after{color:#4e6b58!important}
+
+/* AI */
+.ai14-hero{
+  background:#31493b!important;
+  color:#f7faf7!important;
+  border-color:#31493b!important;
+}
+.ai14-hero *{color:#f7faf7!important}
+.ai14-headline-stats>div{
+  background:#3b5545!important;
+  border-color:#58705f!important;
+}
+.ai14-foundation,.ai37-agent-section{
+  background:#f8faf7!important;
+  border-color:#cfd7d0!important;
+}
+.ai14-flow span{
+  background:#e8ede8!important;
+  color:#3d4d42!important;
+  border-color:#cbd4cc!important;
+}
+.ai37-agent-card{
+  background:#f8faf7!important;
+  border-color:#cfd7d0!important;
+}
+.ai37-agent-card:hover,.ai37-agent-card[open]{
+  border-color:#718a78!important;
+}
+.ai37-agent-card summary span{color:#6f7c73!important}
+.ai37-agent-card summary:after{color:#496451!important}
+.ai37-agent-item{
+  background:#eef2ee!important;
+  border-color:#d5dcd6!important;
+}
+.ai37-agent-item code{color:#2e4938!important}
+.ai37-agent-item span{color:#59665e!important}
+.ai14-project{
+  background:#f8faf7!important;
+  border-color:#cfd7d0!important;
+}
+.ai14-project-heading{
+  background:#edf2ed!important;
+  border-bottom-color:#d7ddd8!important;
+}
+.ai14-number{
+  background:#45614f!important;
+  color:#fff!important;
+  border-color:#45614f!important;
+}
+.ai14-highlight{
+  background:#3b5545!important;
+}
+.ai14-highlight *{color:#f7faf7!important}
+.ai14-use{background:#f8faf7!important}
+.ai14-use p,.ai14-use li{color:#4f5d54!important}
+.ai14-result{
+  background:#e8ede8!important;
+  border-color:#cbd4cc!important;
+  color:#33483b!important;
+}
+.ai14-summary{
+  background:#31493b!important;
+  color:#fff!important;
+  border-color:#31493b!important;
+}
+.ai14-summary *{color:#fff!important}
+
+/* Tables / generic */
+th{
+  background:#3c5847!important;
+  color:#fff!important;
+  border-color:#526b5b!important;
+}
+td{
+  background:#f8faf7!important;
+  color:#3f4d44!important;
+  border-color:#d7ddd8!important;
+}
+code{
+  background:#e7ece7!important;
+  color:#2f4637!important;
+}
+button:focus-visible,summary:focus-visible,.nav:focus-visible,.project-tab:focus-visible{
+  outline:2px solid #526d5b!important;
+  outline-offset:2px!important;
+}
+
+/* Mobile */
+@media(max-width:850px){
+  .side{
+    background:#24362c!important;
+    border-bottom-color:#31483a!important;
+  }
+  .nav{color:#c6d0c8!important}
+  .nav.active{background:#dfe8e1!important;color:#213329!important}
+  .topbar{background:rgba(238,241,237,.96)!important}
+}
+
+
+/* v47 cover-only dramatic manga editorial treatment */
+.cover-hero{
+  position:relative!important;
+  min-height:calc(100vh - 108px)!important;
+  overflow:hidden!important;
+  background:
+    radial-gradient(circle at 78% 22%,rgba(86,53,76,.10) 0 11rem,transparent 11.2rem),
+    radial-gradient(circle at 84% 26%,rgba(62,90,69,.12) 0 20rem,transparent 20.2rem),
+    linear-gradient(125deg,#f5f3eb 0%,#edf0ea 56%,#dde5dd 100%)!important;
+  border:2px solid #2f4637!important;
+  box-shadow:0 20px 50px rgba(43,66,51,.10)!important;
+}
+.cover-hero:before{
+  content:""!important;
+  position:absolute!important;
+  inset:-10%!important;
+  pointer-events:none!important;
+  background:
+    radial-gradient(circle,rgba(48,67,54,.16) 0 1.3px,transparent 1.4px) 0 0/14px 14px,
+    linear-gradient(118deg,transparent 0 64%,rgba(49,73,57,.07) 64% 66%,transparent 66% 100%)!important;
+  opacity:.42!important;
+  transform:rotate(-2deg)!important;
+}
+.cover-hero:after{
+  content:"ENGINEERING  /  PORTFOLIO"!important;
+  position:absolute!important;
+  right:-2.5rem!important;
+  top:4.3rem!important;
+  transform:rotate(90deg)!important;
+  transform-origin:right top!important;
+  font-family:Arial Black,Impact,system-ui,sans-serif!important;
+  font-size:11px!important;
+  letter-spacing:.28em!important;
+  color:#3b5444!important;
+  opacity:.72!important;
+  z-index:1!important;
+}
+
+.cover-main{
+  position:relative!important;
+  z-index:3!important;
+  max-width:790px!important;
+  padding:18px 0 20px 8px!important;
+}
+.cover-main:before{
+  content:""!important;
+  position:absolute!important;
+  left:-22px!important;
+  top:-26px!important;
+  width:118px!important;
+  height:118px!important;
+  border:2px solid rgba(65,92,72,.45)!important;
+  border-radius:50%!important;
+  box-shadow:
+    24px 18px 0 -2px rgba(65,92,72,.08),
+    46px 40px 0 -2px rgba(90,55,79,.06)!important;
+  z-index:-1!important;
+}
+.cover-main:after{
+  content:""!important;
+  position:absolute!important;
+  left:-12px!important;
+  bottom:-24px!important;
+  width:260px!important;
+  height:7px!important;
+  background:linear-gradient(90deg,#2e4938 0 68%,#71566a 68% 78%,#b9aa78 78%)!important;
+  transform:skewX(-28deg)!important;
+}
+
+.cover-kicker{
+  color:#3a5845!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:12px!important;
+  font-style:italic!important;
+  letter-spacing:.14em!important;
+  text-transform:uppercase!important;
+  margin-bottom:20px!important;
+}
+.cover-kicker:before{
+  width:52px!important;
+  height:3px!important;
+  background:#71566a!important;
+  transform:skewX(-25deg)!important;
+}
+
+.cover-title{
+  display:inline-block!important;
+  margin:0!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:clamp(62px,10vw,118px)!important;
+  line-height:.80!important;
+  letter-spacing:-.075em!important;
+  font-style:italic!important;
+  font-weight:900!important;
+  color:#243a2d!important;
+  text-shadow:
+    3px 3px 0 #f5f3eb,
+    5px 5px 0 rgba(113,86,106,.33)!important;
+  transform:skewX(-7deg) rotate(-1.5deg)!important;
+  transform-origin:left center!important;
+}
+.cover-title-sub{
+  display:block!important;
+  width:max-content!important;
+  max-width:100%!important;
+  margin-top:24px!important;
+  padding:9px 14px 8px!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-size:clamp(15px,1.8vw,22px)!important;
+  line-height:1.25!important;
+  font-style:normal!important;
+  font-weight:900!important;
+  letter-spacing:-.025em!important;
+  color:#f7f5ee!important;
+  background:#2f4939!important;
+  box-shadow:8px 8px 0 rgba(113,86,106,.20)!important;
+  transform:skewX(7deg)!important;
+}
+.cover-copy{
+  position:relative!important;
+  max-width:640px!important;
+  margin:34px 0 0 18px!important;
+  padding-left:18px!important;
+  font-size:14px!important;
+  line-height:1.9!important;
+  color:#4c5b51!important;
+  border-left:4px solid #8a9c8d!important;
+}
+.cover-copy:before{
+  content:""!important;
+  position:absolute!important;
+  left:-9px!important;
+  top:-10px!important;
+  width:11px!important;
+  height:11px!important;
+  background:#71566a!important;
+  transform:rotate(45deg)!important;
+}
+
+.cover-meta{
+  margin-top:24px!important;
+  margin-left:18px!important;
+  gap:8px!important;
+}
+.cover-meta span{
+  position:relative!important;
+  background:#f7f5ef!important;
+  color:#304638!important;
+  border:1px solid #9ca99f!important;
+  border-radius:2px!important;
+  padding:8px 12px!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  text-transform:uppercase!important;
+  letter-spacing:.04em!important;
+}
+.cover-meta span:nth-child(even){
+  transform:rotate(-1deg)!important;
+}
+.cover-meta span:nth-child(odd){
+  transform:rotate(.7deg)!important;
+}
+
+.cover-actions{
+  margin-top:27px!important;
+  margin-left:18px!important;
+}
+.cover-btn{
+  border-radius:2px!important;
+  min-height:48px!important;
+  padding:0 20px!important;
+  font-family:Arial Black,Arial,Helvetica,sans-serif!important;
+  font-size:12px!important;
+  letter-spacing:.03em!important;
+  text-transform:uppercase!important;
+  box-shadow:5px 5px 0 rgba(48,70,55,.14)!important;
+}
+.cover-btn.primary{
+  background:#2d4737!important;
+  color:#fff!important;
+  border-color:#2d4737!important;
+}
+.cover-btn.primary:hover{
+  background:#71566a!important;
+  color:#fff!important;
+  border-color:#71566a!important;
+  transform:translate(-2px,-2px)!important;
+  box-shadow:7px 7px 0 rgba(48,70,55,.16)!important;
+}
+.cover-btn.secondary{
+  background:#f6f3ea!important;
+  color:#2d4737!important;
+  border-color:#617466!important;
+}
+.cover-btn.secondary:hover{
+  background:#b9aa78!important;
+  color:#25392e!important;
+  border-color:#b9aa78!important;
+  transform:translate(-2px,-2px)!important;
+}
+
+.cover-side{
+  position:relative!important;
+  z-index:3!important;
+  align-self:stretch!important;
+  width:min(100%,390px)!important;
+  padding:28px 25px!important;
+  border-radius:0!important;
+  background:
+    linear-gradient(148deg,#263c30 0%,#304b3b 72%,#3a5141 100%)!important;
+  color:#f7f5ee!important;
+  border:2px solid #213328!important;
+  box-shadow:
+    13px 13px 0 rgba(113,86,106,.17),
+    -9px -9px 0 rgba(185,170,120,.10)!important;
+  transform:rotate(1.3deg)!important;
+}
+.cover-side:before{
+  content:""!important;
+  position:absolute!important;
+  inset:12px!important;
+  border:1px solid rgba(247,245,238,.20)!important;
+  pointer-events:none!important;
+}
+.cover-side:after{
+  content:""!important;
+  position:absolute!important;
+  width:140px!important;
+  height:140px!important;
+  right:-45px!important;
+  bottom:-42px!important;
+  border-radius:50%!important;
+  background:
+    radial-gradient(circle at center,transparent 0 34%,rgba(185,170,120,.22) 35% 37%,transparent 38% 48%,rgba(113,86,106,.18) 49% 52%,transparent 53%)!important;
+  pointer-events:none!important;
+}
+.cover-side-top{
+  position:relative!important;
+  z-index:1!important;
+  padding-bottom:16px!important;
+  border-bottom:2px solid rgba(247,245,238,.26)!important;
+}
+.cover-side-label{
+  color:#d7dfd8!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-style:italic!important;
+  letter-spacing:.12em!important;
+}
+.cover-side-year{
+  color:#c7b77e!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-style:italic!important;
+  font-size:16px!important;
+}
+.cover-side-list{
+  position:relative!important;
+  z-index:1!important;
+  gap:15px!important;
+}
+.cover-side-item{
+  position:relative!important;
+  padding:15px 0 0 14px!important;
+  border-top:1px solid rgba(255,255,255,.14)!important;
+}
+.cover-side-item:before{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  top:19px!important;
+  width:5px!important;
+  height:28px!important;
+  background:#c7b77e!important;
+  transform:skewY(-20deg)!important;
+}
+.cover-side-item strong{
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-style:italic!important;
+  font-size:17px!important;
+  color:#fff!important;
+}
+.cover-side-item span{
+  color:#d1d9d3!important;
+}
+.cover-scroll{
+  position:relative!important;
+  z-index:1!important;
+  color:#d7ded8!important;
+  font-style:italic!important;
+}
+.cover-scroll:before{
+  color:#c7b77e!important;
+}
+
+@media(max-width:980px){
+  .cover-hero{
+    min-height:auto!important;
+    padding:34px!important;
+  }
+  .cover-main{
+    max-width:100%!important;
+  }
+  .cover-side{
+    transform:none!important;
+    width:100%!important;
+  }
+}
+@media(max-width:580px){
+  .cover-hero{
+    padding:26px 18px!important;
+  }
+  .cover-title{
+    font-size:56px!important;
+    line-height:.86!important;
+    text-shadow:2px 2px 0 #f5f3eb,4px 4px 0 rgba(113,86,106,.28)!important;
+  }
+  .cover-title-sub{
+    width:auto!important;
+    margin-top:18px!important;
+    font-size:15px!important;
+  }
+  .cover-copy,.cover-meta,.cover-actions{
+    margin-left:0!important;
+  }
+  .cover-main:before{
+    width:86px!important;
+    height:86px!important;
+    left:-9px!important;
+  }
+  .cover-main:after{
+    width:190px!important;
+  }
+  .cover-side{
+    padding:22px 18px!important;
+    box-shadow:8px 8px 0 rgba(113,86,106,.14)!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .cover-title,.cover-side,.cover-meta span{transform:none!important}
+}
+
+
+/* v48 cover subtitle readability + board image */
+.cover-hero{
+  gap:22px!important;
+}
+.cover-main{
+  max-width:720px!important;
+}
+.cover-title{
+  position:relative!important;
+  z-index:4!important;
+}
+.cover-title-sub{
+  position:relative!important;
+  z-index:5!important;
+  display:inline-block!important;
+  width:auto!important;
+  max-width:min(100%, 680px)!important;
+  margin-top:20px!important;
+  padding:12px 16px 11px!important;
+  background:linear-gradient(135deg,#274233 0%,#365543 72%,#4c6655 100%)!important;
+  color:#f8f7f1!important;
+  border:2px solid rgba(255,255,255,.16)!important;
+  box-shadow:
+    0 0 0 2px rgba(39,66,51,.16),
+    8px 8px 0 rgba(113,86,106,.20)!important;
+  text-shadow:0 1px 1px rgba(0,0,0,.28)!important;
+  letter-spacing:-.01em!important;
+}
+.cover-copy{
+  position:relative!important;
+  z-index:4!important;
+  max-width:560px!important;
+}
+.cover-meta,.cover-actions{
+  position:relative!important;
+  z-index:4!important;
+}
+
+.cover-board-wrap{
+  position:relative!important;
+  z-index:3!important;
+  width:min(100%, 380px)!important;
+  align-self:center!important;
+  margin-left:auto!important;
+  margin-right:6px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-end!important;
+  gap:10px!important;
+}
+.cover-board-frame{
+  position:relative!important;
+  width:100%!important;
+  padding:18px!important;
+  background:linear-gradient(145deg,#f7f5ed 0%,#e4ebe3 100%)!important;
+  border:2px solid #314739!important;
+  box-shadow:
+    14px 14px 0 rgba(113,86,106,.14),
+    0 18px 34px rgba(41,63,49,.10)!important;
+  transform:rotate(6deg)!important;
+}
+.cover-board-frame:before{
+  content:""!important;
+  position:absolute!important;
+  inset:10px!important;
+  border:1px solid rgba(49,71,57,.22)!important;
+  pointer-events:none!important;
+}
+.cover-board-frame:after{
+  content:""!important;
+  position:absolute!important;
+  width:78px!important;
+  height:78px!important;
+  right:-18px!important;
+  top:-18px!important;
+  border-radius:50%!important;
+  background:
+    radial-gradient(circle, rgba(113,86,106,.24) 0 26%, transparent 27% 47%, rgba(49,71,57,.18) 48% 51%, transparent 52%)!important;
+  pointer-events:none!important;
+}
+.cover-board{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  object-fit:contain!important;
+  filter:
+    drop-shadow(0 10px 18px rgba(0,0,0,.12))
+    contrast(1.02)
+    saturate(.97)!important;
+}
+.cover-board-badge{
+  max-width:92%!important;
+  padding:7px 11px!important;
+  background:#2f4939!important;
+  color:#f8f7f1!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  box-shadow:6px 6px 0 rgba(185,170,120,.16)!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  letter-spacing:.05em!important;
+  text-transform:uppercase!important;
+  transform:rotate(-2deg)!important;
+}
+
+@media(max-width:1180px){
+  .cover-hero{
+    align-items:flex-start!important;
+  }
+  .cover-board-wrap{
+    width:min(100%, 340px)!important;
+    margin-right:0!important;
+  }
+  .cover-board-frame{
+    transform:rotate(4deg)!important;
+  }
+}
+@media(max-width:980px){
+  .cover-hero{
+    flex-direction:column!important;
+    gap:18px!important;
+  }
+  .cover-main{
+    max-width:100%!important;
+  }
+  .cover-title-sub{
+    max-width:100%!important;
+    font-size:18px!important;
+  }
+  .cover-copy{
+    max-width:100%!important;
+  }
+  .cover-board-wrap{
+    width:min(100%, 430px)!important;
+    align-self:center!important;
+    align-items:center!important;
+    margin-left:0!important;
+  }
+  .cover-board-badge{
+    max-width:100%!important;
+  }
+  .cover-side{
+    width:100%!important;
+  }
+}
+@media(max-width:580px){
+  .cover-title-sub{
+    display:block!important;
+    width:100%!important;
+    padding:11px 12px 10px!important;
+    font-size:14px!important;
+    line-height:1.35!important;
+    box-shadow:6px 6px 0 rgba(113,86,106,.18)!important;
+  }
+  .cover-board-wrap{
+    width:100%!important;
+  }
+  .cover-board-frame{
+    padding:12px!important;
+    transform:rotate(2deg)!important;
+    box-shadow:8px 8px 0 rgba(113,86,106,.12),0 14px 24px rgba(41,63,49,.08)!important;
+  }
+  .cover-board-badge{
+    font-size:10px!important;
+    text-align:center!important;
+    transform:none!important;
+  }
+}
+
+
+/* v49 integrate generated art into cover */
+.cover-hero{
+  align-items:stretch!important;
+  gap:24px!important;
+}
+.cover-main{
+  max-width:640px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+.cover-title{
+  max-width:620px!important;
+}
+.cover-title-sub{
+  max-width:100%!important;
+}
+.cover-copy{
+  max-width:520px!important;
+}
+.cover-meta,.cover-actions{
+  max-width:560px!important;
+}
+
+.cover-art-wrap{
+  position:relative!important;
+  z-index:3!important;
+  flex:1 1 420px!important;
+  min-width:320px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.cover-art-panel{
+  position:relative!important;
+  width:min(100%, 520px)!important;
+  padding:18px!important;
+  background:linear-gradient(145deg,#f7f5ed 0%,#e5ece4 100%)!important;
+  border:2px solid #314739!important;
+  box-shadow:
+    16px 16px 0 rgba(113,86,106,.12),
+    0 18px 34px rgba(41,63,49,.10)!important;
+  transform:rotate(4deg)!important;
+}
+.cover-art-panel:before{
+  content:""!important;
+  position:absolute!important;
+  inset:10px!important;
+  border:1px solid rgba(49,71,57,.18)!important;
+  pointer-events:none!important;
+}
+.cover-art-panel:after{
+  content:""!important;
+  position:absolute!important;
+  width:130px!important;
+  height:130px!important;
+  right:-28px!important;
+  top:-28px!important;
+  border-radius:50%!important;
+  background:
+    radial-gradient(circle, rgba(113,86,106,.20) 0 26%, transparent 27% 46%, rgba(49,71,57,.15) 47% 50%, transparent 51%)!important;
+  pointer-events:none!important;
+}
+.cover-art-label{
+  position:absolute!important;
+  left:18px!important;
+  top:-14px!important;
+  padding:6px 12px!important;
+  background:#2f4939!important;
+  color:#f8f7f1!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  box-shadow:6px 6px 0 rgba(185,170,120,.16)!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  letter-spacing:.08em!important;
+  text-transform:uppercase!important;
+  z-index:2!important;
+}
+.cover-art-image{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  border:1px solid rgba(49,71,57,.16)!important;
+  box-shadow:0 12px 28px rgba(30,45,36,.12)!important;
+  background:#ddd!important;
+}
+
+/* hide previous board-specific remnants if any remain */
+.cover-board-wrap,.cover-board-frame,.cover-board,.cover-board-badge{
+  display:none!important;
+}
+
+@media(max-width:1180px){
+  .cover-main{
+    max-width:560px!important;
+  }
+  .cover-art-panel{
+    width:min(100%, 460px)!important;
+  }
+}
+@media(max-width:980px){
+  .cover-hero{
+    flex-direction:column!important;
+    align-items:flex-start!important;
+  }
+  .cover-main{
+    max-width:100%!important;
+  }
+  .cover-copy,.cover-meta,.cover-actions,.cover-title{
+    max-width:100%!important;
+  }
+  .cover-art-wrap{
+    width:100%!important;
+    min-width:0!important;
+  }
+  .cover-art-panel{
+    width:min(100%, 560px)!important;
+    transform:rotate(2deg)!important;
+  }
+}
+@media(max-width:580px){
+  .cover-art-panel{
+    padding:12px!important;
+    width:100%!important;
+    transform:none!important;
+    box-shadow:8px 8px 0 rgba(113,86,106,.12),0 14px 24px rgba(41,63,49,.08)!important;
+  }
+  .cover-art-label{
+    left:12px!important;
+    top:-12px!important;
+    font-size:10px!important;
+    padding:5px 9px!important;
+  }
+}
+
+
+/* v50 cover layout without image */
+.cover-hero{
+  grid-template-columns:none!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.55fr) minmax(290px,.72fr)!important;
+  align-items:stretch!important;
+  gap:34px!important;
+}
+.cover-main{
+  max-width:none!important;
+  width:100%!important;
+}
+.cover-title{
+  max-width:760px!important;
+}
+.cover-title-sub{
+  max-width:680px!important;
+}
+.cover-copy{
+  max-width:650px!important;
+}
+.cover-meta,.cover-actions{
+  max-width:700px!important;
+}
+.cover-side{
+  width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  align-self:stretch!important;
+}
+.cover-art-wrap,.cover-art-panel,.cover-art-image,.cover-art-label,
+.cover-board-wrap,.cover-board-frame,.cover-board,.cover-board-badge{
+  display:none!important;
+}
+@media(max-width:980px){
+  .cover-hero{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:22px!important;
+  }
+  .cover-side{
+    width:100%!important;
+  }
+}
+
+
+/* v51 cover navigation removed */
+.cover-actions,.cover-btn{display:none!important}
+
+</style></head><body>
+<a class="skip" href="#year-index">연도별 목차로 이동</a>
+<div id="app">
+<aside aria-label="대시보드 탐색" class="side"><div class="identity"><span aria-hidden="true" class="monogram">JG</span><span><strong>홍진기</strong><small>EMBEDDED ENGINEER</small></span></div>
+<div><p class="side-label">CAREER DASHBOARD</p><nav aria-label="연도별 메뉴" class="sidenav">
+<button aria-current="page" class="nav active" data-home="" type="button"><span>Overview</span><span>⌂</span></button>
+<button class="nav" data-nav-year="2024" type="button"><span>2024</span><span>04</span></button>
+<button class="nav" data-nav-year="2025" type="button"><span>2025</span><span>05</span></button>
+<button class="nav" data-nav-year="2026" type="button"><span>2026</span><span>08</span></button>
+<button class="nav" data-ai="" type="button"><span>AI 하네스 적용</span><span>↗</span></button>
+</nav></div><div class="side-note"><b>ENGINEERING FOCUS</b><strong>EtherCAT · STM32 · ARM Linux</strong><br/>Motion Control / System Debugging</div>
+</aside>
+<div class="main"><div class="topbar"><div class="crumb" id="crumb">PORTFOLIO / <b>OVERVIEW</b></div><div class="topmeta">ENGINEERING EVIDENCE · 2024—2026</div></div>
+<main class="content" id="main">
+
+<div id="overview">
+<section class="cover-hero" aria-labelledby="cover-title">
+  <div class="cover-main">
+    <span class="cover-kicker">Embedded Engineering Portfolio</span>
+    <h1 class="cover-title" id="cover-title">홍진기<span class="cover-title-sub">임베디드 · 펌웨어 · EtherCAT 모션 제어 엔지니어</span></h1>
+    <p class="cover-copy">현장 이슈 대응부터 다축 모션, STM32 펌웨어, ARM Linux, EtherCAT, 아날로그 정밀도 개선까지 직접 수행한 작업을 연도별 프로젝트와 AI 활용 사례로 정리한 포트폴리오입니다.</p>
+    <div class="cover-meta">
+      <span>2024 — 2026</span>
+      <span>Embedded C / C++</span>
+      <span>EtherCAT Motion</span>
+      <span>STM32 · ARM Linux</span>
+    </div>
+  </div>
+<aside class="cover-side" aria-label="포트폴리오 요약">
+
+    <div class="cover-side-top">
+      <span class="cover-side-label">Portfolio Index</span>
+      <span class="cover-side-year">2024—2026</span>
+    </div>
+    <div class="cover-side-list">
+      <div class="cover-side-item"><strong>2024</strong><span>현장 대응 · 산업용 통신 · 광 컨버터 기반 증설 대응</span></div>
+      <div class="cover-side-item"><strong>2025</strong><span>토크 제어 · EtherCAT SDK 전환 · ARM Linux 이식</span></div>
+      <div class="cover-side-item"><strong>2026</strong><span>실시간 모션 개선 · 부팅 최적화 · 정밀도 분석</span></div>
+    </div>
+    <div class="cover-scroll">아래로 스크롤하면 Overview가 이어집니다</div>
+  </aside>
+</section>
+<div class="hero-grid" id="overview-start"><section aria-labelledby="hero-title" class="hero-card"><span class="eyebrow">EMBEDDED SYSTEMS / INDUSTRIAL AUTOMATION</span><h1 id="hero-title">제어 시스템의 경계를 연결해<br/><span class="accent">문제를 재현하고 해결하는</span><br/>임베디드 개발자</h1>
+<p>EtherCAT 다축 모션, STM32 펌웨어, ARM Linux, DPRAM·공유메모리, 아날로그 I/O까지 다룹니다. 기술을 나열하는 대신, 각 프로젝트에서 <strong style="color:#fff">무엇이 문제였는지 · 무엇을 직접 맡았는지 · 왜 그 방식을 선택했는지 · 어디까지 검증했는지</strong>를 보여줍니다.</p>
+<div class="pills"><span class="pill">Embedded C / C++</span><span class="pill">EtherCAT Master &amp; Motion</span><span class="pill">STM32 / Timer / ISR</span><span class="pill">ARM Linux / POSIX</span><span class="pill">Modbus / DPRAM</span><span class="pill">ADC / DAC Calibration</span></div>
+</section><section aria-labelledby="focus-title" class="expertise"><span class="eyebrow">TECHNICAL SNAPSHOT</span><h2 id="focus-title">핵심 기술 역량</h2>
+<div class="expert-row"><strong>Real-Time Motion Control</strong><small>다축 상태 머신, 위치·토크 모드, 동기 기동 및 실행 경로 리뷰</small></div>
+<div class="expert-row"><strong>EtherCAT Platform Engineering</strong><small>Master Stack 버전 전환, Distributed Clock, 다축 회귀·롤백</small></div>
+<div class="expert-row"><strong>Embedded Linux Optimization</strong><small>U-Boot → Kernel → Init → Application 단계별 부팅 계측</small></div>
+<div class="expert-row"><strong>Cross-Layer Root Cause Analysis</strong><small>펌웨어·IPC·SPI·보정 계수·아날로그 회로 조건 연결</small></div>
+<div class="expert-row"><strong>AI Harness Design &amp; Application</strong><small>범용 하네스 설계 → 프로젝트별 지침 적용 → 기능 분석·수정·독립 리뷰</small></div>
+</section></div>
+<section aria-label="AI 활용 사례 바로가기" class="ai-callout"><div><span class="eyebrow">ADDITIONAL EXPERTISE / AI IN PRACTICE</span><strong>프로젝트별 AI 하네스와 에이전트를 적용한 3가지 사례</strong><p>EtherCAT 실시간 오류 분석 · Loader/DPRAM 독립 검토 · 다축 모션 결함 분석</p></div><button data-ai="" type="button">AI 활용 사례 3가지 보기 →</button></section>
+<section aria-labelledby="year-index-title" id="year-index"><div class="section-head"><div><span class="eyebrow">CAREER INDEX / SELECT A YEAR</span><h2 id="year-index-title">연도별 프로젝트 대시보드</h2></div><p>연도를 선택하면 해당 연도 개요와 세부 프로젝트가 열립니다.</p></div><div class="year-grid"><button aria-label="2024년의 상세 프로젝트 4건 보기" class="year-card" data-nav-year="2024" type="button">
+<div class="year-top"><span class="year-num">2024</span><span class="year-count">04 CASES <span aria-hidden="true">↗</span></span></div>
+<span class="year-eyebrow">FIELD / NETWORK / MOTION</span>
+<strong class="year-title">현장 3개 분야 · PLC 광 증설 · 모션 제어</strong>
+<span class="year-desc">로드셀 무게 측정·산업용 Ethernet·다축 모션 현장과 광 증설 절체·위치 복원 개선.</span>
+<span class="year-subtitle">핵심 기술 키워드</span><span class="year-keywords"><span class="tech-tag">로드셀 계측 포함 현장 3개 분야 대응</span><span class="tech-tag">광↔전기 컨버터 포함 PLC 광 증설 Ring ↔ Line 절체</span><span class="tech-tag">연속운전 ID별 Step 및 명령 처리</span><span class="tech-tag">32-bit 위치 경계와 ABS 파일 복원</span></span>
+<span class="year-action">2024년 상세 대시보드 열기 <span aria-hidden="true">→</span></span>
+</button><button aria-label="2025년의 상세 프로젝트 5건 보기" class="year-card" data-nav-year="2025" type="button">
+<div class="year-top"><span class="year-num">2025</span><span class="year-count">05 CASES <span aria-hidden="true">↗</span></span></div>
+<span class="year-eyebrow">PLATFORM / VALIDATION</span>
+<strong class="year-title">토크 제어 전담 · Acontis→SOEM · 내장형 이식</strong>
+<span class="year-desc">토크 제어의 계획부터 현장 사용까지 담당하고, SDK 교체와 3개 앱 플랫폼 이식을 수행.</span>
+<span class="year-subtitle">핵심 기술 키워드</span><span class="year-keywords"><span class="tech-tag">Torque: 기획 → 개발 → QA → 현장 사용</span><span class="tech-tag">Acontis SDK → SOEM 오픈소스 전환</span><span class="tech-tag">Manager / Main / EtherCAT 3-App IPC</span><span class="tech-tag">Bootloader 하위 호환 · Origin Offset</span></span>
+<span class="year-action">2025년 상세 대시보드 열기 <span aria-hidden="true">→</span></span>
+</button><button aria-label="2026년의 상세 프로젝트 8건 보기" class="year-card" data-nav-year="2026" type="button">
+<div class="year-top"><span class="year-num">2026</span><span class="year-count">08 CASES <span aria-hidden="true">↗</span></span></div>
+<span class="year-eyebrow">REAL-TIME / SYSTEM</span>
+<strong class="year-title">실시간 모션 · Linux 부팅 · 정밀도 개선</strong>
+<span class="year-desc">8축 동시기동 개선, 64비트 내부 좌표 계산, 회전 위치 이벤트 출력을 각각 독립 사례로 소개.</span>
+<span class="year-subtitle">핵심 기술 키워드</span><span class="year-keywords"><span class="tech-tag">8축 동시기동: 축별 목표값 · 완료 처리 개선</span><span class="tech-tag">64-bit 내부 좌표 계산 · INT32 경계 보호</span><span class="tech-tag">회전 위치 이벤트 출력 · ARM Linux 부팅 최적화</span><span class="tech-tag">산업용 통신 안정화 · ADC/DAC 보정</span></span>
+<span class="year-action">2026년 상세 대시보드 열기 <span aria-hidden="true">→</span></span>
+</button></div></section>
+<section aria-labelledby="career-line-title"><div class="section-head"><div><span class="eyebrow">CAREER PROGRESSION</span><h2 id="career-line-title">기술 범위의 확장</h2></div></div><div class="career-track"><div class="track-item"><b>2024 / CONTROL</b><strong>현장 제어 → EtherCAT 모션</strong><p>SDO, CSP/CST, 다중 위치결정과 INT32 경계를 다룬 시기</p></div><div class="track-item"><b>2025 / PLATFORM</b><strong>좌표계 구조 → Master Stack 전환</strong><p>장기 모션 유지와 신규 스택 포팅·다축 검증·롤백</p></div><div class="track-item"><b>2026 / SYSTEM</b><strong>실시간 모션 → Linux·정밀도 분석</strong><p>원호보간·부팅·IPC·ADC/DAC를 아우르는 원인 분석</p></div></div></section>
+</div>
+<div hidden="" id="ai-view">
+<div class="year-topline"><span class="eyebrow">ADDITIONAL EXPERTISE / AI IN REAL PROJECTS</span><button class="text-button" data-home="" type="button">← 소개 및 연도 목차</button></div>
+
+<section aria-labelledby="ai-title" class="ai14-hero">
+  <span class="eyebrow">2026 / PROJECT-SCOPED AI ENGINEERING</span>
+  <h1 id="ai-title">프로젝트별 제약을 먼저 정의하고<br/><span class="accent">역할 기반 AI 하네스를 적용했습니다.</span></h1>
+  <p>같은 AI 설정을 모든 저장소에 반복 적용하지 않고, 각 프로젝트의 제품 변형·소스 경계·인코딩·실시간 주기·프로토콜을 먼저 정의합니다. 이후 프로젝트 폴더 내부에 역할별 에이전트와 검토 절차를 구성해 분석·구현·독립 리뷰에 사용합니다.</p>
+  <div class="ai14-headline-stats"><div><b>03</b><span>AI 활용 프로젝트</span></div><div><b>Project-local</b><span>폴더별 전용 하네스</span></div><div><b>역할 정의 → 작업 → 검토</b><span>구현과 검증을 분리</span></div></div>
+</section>
+
+<section class="ai14-foundation" aria-label="프로젝트별 AI 하네스 적용 원칙">
+  <div><span class="eyebrow">HARNESS PRINCIPLE / PROJECT BOUNDARY FIRST</span><h2>프로젝트 경계와 보호 조건을 먼저 고정한 뒤 AI 역할을 나눴습니다.</h2>
+  <p>제품 변형·활성 소스·빌드 환경·인코딩·실시간 경로·공유메모리/프로토콜 계약을 프로젝트 지침에 기록하고, 구현자와 검토자의 역할을 분리합니다. 프로젝트 성격에 맞춰 Claude와 Codex의 담당 영역을 나누어 운영합니다.</p></div>
+  <div class="ai14-flow" aria-label="하네스 적용 흐름"><span>01 / 범위·보호조건</span><span>02 / 에이전트 역할</span><span>03 / 분석·구현</span><span>04 / 독립 검토·기록</span></div>
+</section>
+
+<section class="ai37-agent-section" aria-labelledby="agent-title">
+  <div class="ai37-agent-head"><div><span class="eyebrow">PROJECT AGENTS / DEFINED ROLES</span><h2 id="agent-title">프로젝트별 에이전트 구성과 역할</h2></div></div>
+  <div class="ai37-agent-grid">
+
+    <details class="ai37-agent-card" open>
+      <summary><strong>레거시 아날로그 펌웨어</strong><span>Claude 4 · Codex 4</span></summary>
+      <div class="ai37-agent-body">
+        <div class="ai37-agent-group"><strong>CLAUDE</strong><div class="ai37-agent-list">
+          <div class="ai37-agent-item"><code>orchestrator</code><span>제품 변형·변경 범위·파일 소유권·설계·검증 순서 조율</span></div>
+          <div class="ai37-agent-item"><code>firmware-implementer</code><span>승인된 STM32/IAR 애플리케이션 소스 수정과 패치 로그 작성</span></div>
+          <div class="ai37-agent-item"><code>verifier</code><span>구현자와 분리된 컨텍스트에서 diff·호출 경로·가능한 검증 확인</span></div>
+          <div class="ai37-agent-item"><code>safety-reviewer</code><span>ISR, ADC/DAC·SPI, Flash/부트, 재시작·안전 출력 경로 집중 검토</span></div>
+        </div></div>
+        <div class="ai37-agent-group"><strong>CODEX</strong><div class="ai37-agent-list">
+          <div class="ai37-agent-item"><code>firmware_orchestrator</code><span>대상 IAR 프로젝트와 읽기 전용 리뷰 범위 배분</span></div>
+          <div class="ai37-agent-item"><code>code_reviewer</code><span>C 코드 정확성, 초기화·오류·종료 경로의 회귀 위험 검토</span></div>
+          <div class="ai37-agent-item"><code>embedded_firmware_reviewer</code><span>레지스터·인터럽트·통신·Flash·안전 출력 계약 검토</span></div>
+          <div class="ai37-agent-item"><code>verification_reviewer</code><span>빌드·정적·시나리오·하드웨어 증거의 존재 여부 독립 확인</span></div>
+        </div></div>
+      </div>
+    </details>
+
+    <details class="ai37-agent-card">
+      <summary><strong>실시간 EtherCAT 모션 플랫폼</strong><span>Root 5 · Motion 5</span></summary>
+      <div class="ai37-agent-body">
+        <div class="ai37-agent-group"><strong>ROOT AGENTS</strong><div class="ai37-agent-list">
+          <div class="ai37-agent-item"><code>orchestrator</code><span>PLC·통신·모션에 걸친 작업 배분과 단계 통합</span></div>
+          <div class="ai37-agent-item"><code>plc-engineer</code><span>PLC 실행 엔진, 1ms 주기, 디바이스 메모리 검토</span></div>
+          <div class="ai37-agent-item"><code>motion-engineer</code><span>EtherCAT I/O, 모션 상태, 좌표 변환·슬레이브 제어</span></div>
+          <div class="ai37-agent-item"><code>comm-engineer</code><span>EtherCAT/Modbus/Ethernet 및 Shared Memory·DPRAM 통신</span></div>
+          <div class="ai37-agent-item"><code>qa</code><span>실시간성, IPC 정합성, 회귀·빌드 근거 검토</span></div>
+        </div></div>
+        <div class="ai37-agent-group"><strong>MOTION AGENTS</strong><div class="ai37-agent-list">
+          <div class="ai37-agent-item"><code>posctrl-orchestrator</code><span>IPC 선행 작업부터 기능 구현·QA까지 순서 조율</span></div>
+          <div class="ai37-agent-item"><code>ipc-engineer</code><span>명령·에러·파라미터 구조와 PLC↔EtherCAT 매핑</span></div>
+          <div class="ai37-agent-item"><code>motion-algorithm-engineer</code><span>등분각·나선·3D 원호의 보간 수학과 경계 조건</span></div>
+          <div class="ai37-agent-item"><code>control-engineer</code><span>캠·동기 절단 계열 상태 머신과 ESTOP 조건</span></div>
+          <div class="ai37-agent-item"><code>posctrl-qa</code><span>모션 기능의 실시간·안전·인코딩·IPC 정적 검토</span></div>
+        </div></div>
+        
+      </div>
+    </details>
+
+    <details class="ai37-agent-card">
+      <summary><strong>레거시 Ethernet / Loader·DPRAM</strong><span>Codex 5</span></summary>
+      <div class="ai37-agent-body">
+        <div class="ai37-agent-group"><strong>CODEX AGENTS</strong><div class="ai37-agent-list">
+          <div class="ai37-agent-item"><code>기본 컨텍스트</code><span>대상 제품·변경 범위·파일 소유권·합격 기준·검증 계획 조정</span></div>
+          <div class="ai37-agent-item"><code>codex-implementer</code><span>승인된 파일만 수정하고 원시 검증 결과 보고</span></div>
+          <div class="ai37-agent-item"><code>codex-verifier</code><span>실제 프로젝트 포함 파일·도구·빌드 결과 존재 여부 확인</span></div>
+          <div class="ai37-agent-item"><code>codex-reviewer</code><span>설정·변경 범위·인코딩 보존·근거 없는 주장 독립 검토</span></div>
+          <div class="ai37-agent-item"><code>embedded-reviewer</code><span>WDT·DPRAM·Flash·절대주소·프로토콜·초기화 순서 위험 검토</span></div>
+        </div></div>
+      </div>
+    </details>
+
+    <details class="ai37-agent-card">
+      <summary><strong>다축 EtherCAT 위치결정</strong><span>Claude 5</span></summary>
+      <div class="ai37-agent-body">
+        <div class="ai37-agent-group"><strong>CLAUDE AGENTS</strong><div class="ai37-agent-list">
+          <div class="ai37-agent-item"><code>orchestrator</code><span>요구사항 분석, 작업 분배·결과 통합, QA 단계 전환 관리</span></div>
+          <div class="ai37-agent-item"><code>ethercat-engineer</code><span>EtherCAT, PDO, 다축 위치 제어, 좌표 변환, 실시간 타이머</span></div>
+          <div class="ai37-agent-item"><code>plc-engineer</code><span>PLC VM·메모리와 GPIO·Flash·SD·USB 시스템 I/O</span></div>
+          <div class="ai37-agent-item"><code>comm-engineer</code><span>Modbus·Ethernet·DPRAM·시리얼/HMI 통신과 timeout</span></div>
+          <div class="ai37-agent-item"><code>qa</code><span>DPRAM 양측 구조체, 1ms 주기, 프로토콜·메모리 안전성 검토</span></div>
+        </div></div>
+        
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<section aria-label="AI 실무 활용 프로젝트 3가지" class="ai14-projects">
+ <div class="ai14-section-title"><div><span class="eyebrow">THREE PROJECTS / HOW AI WAS APPLIED</span><h2>실제 프로젝트에서 AI를 어떻게 사용했는가</h2></div></div>
+<article class="ai14-project" id="ai-motion-fault">
+  <div class="ai14-project-heading"><div><span class="ai14-number">01</span><span class="eyebrow">REAL-TIME ETHERCAT / ROOT CAUSE SEPARATION</span><h3>회전 위치 이벤트 기능의 실시간 오류 원인 분리</h3><p>정상적인 동시 접근 경합과 실제 EtherCAT 수신 실패를 같은 오류로 취급하던 경로 분석</p></div></div>
+  <div class="ai14-columns"><div class="ai14-highlight"><span class="ai14-label">하네스를 적용한 방식</span><strong>100µs/1ms 실시간 제약과 안전 차단 조건을 먼저 고정한 뒤 수정</strong><p>초기 가설을 그대로 확정하지 않고 첫 수정 뒤에도 증상이 재발하자 fault reason을 다시 분리했습니다. 정상 lock 경합과 실제 통신 실패가 같은 카운터에 합쳐지는 경로를 추적했습니다.</p></div><div class="ai14-use"><span class="ai14-label">AI를 구체적으로 사용한 업무</span><ul><li>주기 내 lock 획득 실패로 snapshot 게시를 건너뛴 경우와 실제 Rx frame 실패를 분리</li><li>정상 lock-skip에서는 gap counter를 증가시키지 않고, 실제 통신 실패의 안전 차단은 유지하도록 수정</li></ul><p class="ai14-result"><b>실제 결과물</b> 정상적인 Lock 경합은 오류 누적에서 제외하고, 실제 EtherCAT Rx/WKC 실패에 대한 안전 차단은 유지하도록 오류 판정 로직을 분리했습니다.</p></div></div>
+ </article>
+
+ <article class="ai14-project" id="ai-loader-review">
+  <div class="ai14-project-heading"><div><span class="ai14-number">02</span><span class="eyebrow">LEGACY ETHERNET / INDEPENDENT STATIC REVIEW</span><h3>Loader·DPRAM 변경 독립 정적 검토</h3><p>이미 존재하는 통신 변경을 Codex가 읽기 전용으로 독립 검토</p></div></div>
+  <div class="ai14-columns"><div class="ai14-highlight"><span class="ai14-label">하네스를 적용한 방식</span><strong>활성 도구를 Codex로 제한하고, 구현과 독립 검토를 구분</strong><p>제품 변형·빌드 가능 여부·증거 수준을 프로젝트 정책에 기록하고, 읽기 전용 검토 역할이 기존 Loader/DPRAM 변경의 요청 판정·busy 처리·통신 경로를 확인하도록 구성했습니다.</p></div><div class="ai14-use"><span class="ai14-label">AI를 구체적으로 사용한 업무</span><ul><li>진행 중인 DPRAM 요청을 busy로 판정하는지와 다른 요청 상태를 지우지 않는지 소스 대조</li><li>Loader 수신 전에 DPRAM busy 상태를 확인하는 흐름과 관련 정적 검사를 확인</li><li>packet 자료의 Loader read와 다운로드 명령을 구분해 통신 분석 범위를 명확히 정리</li></ul><p class="ai14-result"><b>실제 결과물</b> Loader 수신 전에 DPRAM busy 상태를 확인하고 진행 중 요청을 보호하는 흐름을 정적 검토해, 요청 충돌 방지 로직의 핵심 경로를 확인했습니다.</p></div></div>
+ </article>
+
+ <article class="ai14-project" id="ai-motion-harness">
+  <div class="ai14-project-heading"><div><span class="ai14-number">03</span><span class="eyebrow">MULTI-AXIS MOTION / HARNESS · DEBUGGING</span><h3>다축 모션 하네스와 동시기동 연속운전 결함 분석</h3><p>EtherCAT·PLC·통신·QA 역할을 분리한 Claude Code 하네스를 모션 오류 분석에 적용</p></div></div>
+  <div class="ai14-columns"><div class="ai14-highlight"><span class="ai14-label">하네스를 적용한 방식</span><strong>도메인 에이전트 5개와 스킬·품질 hook을 프로젝트 폴더 내부에 구성</strong><p>Linux PLC 환경에서 EtherCAT Master와 PLC 런타임의 역할·소유 범위, 1ms 주기, DPRAM 양측 호환, 레거시 인코딩 규칙을 프로젝트 지침에 고정했습니다.</p></div><div class="ai14-use"><span class="ai14-label">AI를 구체적으로 사용한 업무</span><ul><li>동시기동 준비 중 공유 위치·속도 값이 덮어써질 수 있는 경로를 추적하고 실행 전 로컬 복사로 보호</li><li>한 축 완료 시 다른 축까지 정지되던 완료 처리를 분리해, 각 축 독립 완료 후 마지막 축에서 다음 연속 스텝으로 이동하도록 수정</li><li>소프트 리밋 단위 혼용과 위치 변환·저장 순서 등 주변 모션 경계 조건도 함께 분석</li></ul><p class="ai14-result"><b>실제 결과물</b> 동시기동 실행 전 축별 목표 위치·속도를 보호하고, 한 축의 완료가 다른 축을 강제 정지시키지 않도록 완료 처리를 분리해 연속운전 흐름을 개선했습니다.</p></div></div>
+ </article>
+</section>
+
+<section class="ai14-summary" aria-label="AI 활용 핵심 요약"><span class="eyebrow">PORTFOLIO TAKEAWAY</span><strong>AI를 하나의 범용 코딩 도구로 두지 않고, 프로젝트마다 역할·보호 조건·검토 경계를 다시 정의했습니다.</strong><p>레거시 인코딩, 실시간 EtherCAT, Loader/DPRAM, 다축 모션처럼 위험 지점이 서로 다른 프로젝트에 맞춰 에이전트 구성과 검증 절차를 달리 적용했습니다.</p></section>
+</div>
+<div hidden="" id="year-view">
+<div class="year-topline"><span class="eyebrow">YEARLY DASHBOARD / PROJECT DETAILS</span><button class="text-button" data-home="" type="button">← 전체 소개 및 연도 목차</button></div>
+<section class="year-intro"><div class="detail-year"><span class="year-badge" id="detail-yr">2024</span><div><span class="eyebrow" id="detail-overline"></span><h2 id="detail-title"></h2></div></div><p id="detail-summary"></p><div class="hook-row" id="detail-hooks"></div></section>
+<section aria-label="선택 연도 주요 지표" class="fact-grid"><div class="fact"><span>대표 프로젝트 사례</span><b><span id="detail-count">4</span>건</b></div><div class="fact"><span>주요 수행 기간</span><b id="detail-range">1월–12월</b></div><div class="fact"><span>기술 키워드 항목</span><b><span id="detail-keyword-count">6</span>개</b></div></section>
+<section aria-label="프로젝트 상세 탐색" id="project-explorer"><div class="project-head"><div><span class="eyebrow" id="project-head-count">대표 프로젝트</span><h2>프로젝트 상세 탐색</h2></div><button aria-pressed="false" class="mode" id="alltoggle" type="button">모든 프로젝트 한눈에 보기</button></div>
+<div class="project-layout"><nav aria-label="선택 연도 프로젝트 목록" class="project-menu" id="project-menu"></nav><div><div id="single-project"></div><div id="all-projects"></div></div></div></section>
+<section class="year-growth"><h3>이 연도의 기술적 변화</h3><p id="detail-growth"></p></section>
+</div></main><footer class="footer">© 홍진기 · Embedded Engineering Portfolio · 2024–2026</footer></div>
+</div><script>
+const YEARS={"2024":{"subtitle":"Field Debugging / PLC Expansion / EtherCAT Motion","title":"현장 오류 해결에서 광 증설·모션 펌웨어 개선까지","summary":"대표 현장 3개 분야에서 로드셀 무게 측정 상태, Ethernet 프레임, 다축 모션 이슈에 대응했습니다. 광↔전기 변환 컨버터가 포함된 PLC 광 증설망의 Ring↔Line 절체와 재기동 오류를 개선하고, EtherCAT 연속운전과 32-bit 현재 위치 복원 문제를 수정했습니다. 토크 제어는 요구사항 협의와 초기 구현을 진행했으며 품질시험·실제 현장 활용의 주요 성과는 2025년 사례에서 소개합니다.","keywords":["3 Representative Field Cases","PLC Optical Expansion / Ring-Line Failover","Multi-program Continuous Motion / Step ID","INT32 ABS Position Restore","Firmware Debug & Field Test"],"range":"1월–12월","focus":"현장 문제 분석 · PLC 광 증설·광↔전기 컨버터 · EtherCAT 연속운전/위치 복원","projects":[{"period":"1–12월","title":"로드셀 계측·Ethernet·다축 모션 대표 현장 이슈 대응","lead":"무게를 측정하는 로드셀 모듈, 산업용 Ethernet 통신, EtherCAT 모션 현장에서 보고된 증상을 재현하고 모듈별 펌웨어·PLC 상태·통신 경로를 구분해 대응했습니다.","problem":"임베디드·펌웨어는 하드웨어와 운전 환경의 영향을 크게 받기 때문에 같은 제품도 현장마다 다른 증상이 발생할 수 있습니다. 사내 테스트에서 재현되지 않는 문제는 직접 현장을 방문해 설비 구성과 동작 상태를 확인하고 원인을 분석·조치했습니다.","actions":["로드셀 무게 측정 모듈: 미·과계량 알람 및 기본/강제 알람 GO에서 완료값이 잘못 기록되거나 완료되지 않는 문제를 상태 조건과 배치 프로그램 처리 순서 수정으로 대응","자동집하장 Ethernet: 사용자 프로토콜 송신 프레임의 간헐적 누락을 분석하고 지연 로직을 줄인 FW로 부하 시험·현장 교체 수행","다축 EtherCAT 현장: 초기 전원 인가 후 첫 지령, 소프트 상한, 통신 중단, 현재 위치 표시·복원 등 증상을 재현하고 원인별 수정·설정 안내 수행"],"engineering":"현장을 추상적으로 소개하는 대신 확인 가능한 대표 증상과 수정 내용만 나열하고, 모듈 2종을 별도 연동 프로젝트로 가정하지 않음","result":"로드셀 계측 FW 수정 후 시험 PASS를 확인했고, 산업용 Ethernet 통신 모듈은 현장 교체 후 정상 운전을 확인했습니다. 다축 EtherCAT 현장은 증상별로 수정·설정 대응을 진행했습니다.","status":"대표 3개 현장 분야","tags":["Field Debugging","PLC State Machine","Protocol Timing","EtherCAT"],"role":"현장 재현, 펌웨어 분석·수정, 개발자/현장 시험 대응","env":"로드셀 기반 무게 측정 모듈 · 산업용 Ethernet 모듈 · EtherCAT 다축 위치결정","constraint":"임베디드·펌웨어는 하드웨어와 운전 환경의 영향을 크게 받기 때문에 같은 제품도 현장마다 다른 증상이 발생할 수 있습니다. 사내 테스트에서 재현되지 않는 문제는 직접 현장을 방문해 설비 구성과 동작 상태를 확인하고 원인을 분석·조치했습니다.","choice":"현장을 추상적으로 소개하는 대신 확인 가능한 대표 증상과 수정 내용만 나열하고, 모듈 2종을 별도 연동 프로젝트로 가정하지 않음","verification":"로드셀 계측 FW 수정 후 시험 PASS를 확인했고, 산업용 Ethernet 통신 모듈은 현장 교체 후 정상 운전을 확인했습니다. 다축 EtherCAT 현장은 발생 증상별 수정 및 설정 대응을 진행했습니다."},{"period":"4–11월","title":"광↔전기 컨버터가 포함된 PLC 광 증설망의 Ring ↔ Line 절체 및 재기동 오류 개선","lead":"PLC 광 증설 네트워크 중간에 광 신호를 전기 신호로 변환하고 다시 광 신호로 전달하는 컨버터가 포함된 구성에서, 단선 및 전원 재인가 조건의 Ring/Line 모드 전환을 개선했습니다.","problem":"PLC 광 증설 구간 중간에 광↔전기 변환 컨버터가 포함된 구성에서 전원을 다시 인가하면 증설 미연결 오류가 발생했고, 일부 광 구간 단선 시 Ring→Line 전환 요청이 정상 전달되지 않는 문제가 있었습니다.","actions":["전원 재인가 시 포트와 증설 베이스의 연결 상태를 충분히 확인한 뒤 초기 통신 모드를 결정하도록 초기화 순서를 수정","증설 구간의 광 포트 단선 시 링 구성에서 라인 구성으로 자동 절체되도록 상태 전달과 전환 로직 개선","증설 단수와 포트 배치별 Ring↔Line 전환 시험 및 장시간 에이징 시험 수행"],"engineering":"일반 광통신 기능이 아니라 PLC 증설 베이스의 링/라인 장애 절체 기능으로 설명","result":"Ring↔Line 전환 시험과 장시간 에이징 시험에서 정상 동작을 확인했습니다. 이후 현장 재기동 조건에서 추가 문제가 발생해 초기화 순서를 보완했습니다.","status":"기능 개발·현장 회귀 대응","tags":["PLC Expansion","Optical Converter","Ring/Line Failover","Boot Initialization"],"role":"증설 통신 상태 분석, 절체 FW 수정, 시험 시나리오 대응","env":"PLC CPU · 광↔전기 변환 컨버터 · 다단 광 증설 베이스","constraint":"PLC 광 증설 구간 중간에 광↔전기 변환 컨버터가 포함된 구성에서 전원을 다시 인가하면 증설 미연결 오류가 발생했고, 일부 광 구간 단선 시 Ring→Line 전환 요청이 정상 전달되지 않는 문제가 있었습니다.","choice":"일반 광통신 기능이 아니라 PLC 증설 베이스의 링/라인 장애 절체 기능으로 설명","verification":"Ring↔Line 전환 시험과 장시간 에이징 시험에서 정상 동작을 확인했습니다. 이후 현장 재기동 조건에서 추가 문제가 발생해 초기화 순서를 보완했습니다."},{"period":"5–6월, 12월 후속","title":"EtherCAT 다중 연속운전의 ID별 Step 관리와 지령 처리 개선","lead":"하나의 모션 제어기에서 여러 연속운전 시퀀스를 분리하고, 명령 전달 시점 및 연속 궤적 전환 문제를 검증·수정했습니다.","problem":"연속운전 중 최종 목표 위치가 잘못 표시되거나 목표가 갱신되지 않았고, 여러 모션 제어 명령을 짧은 시간에 입력하면 공유메모리 전달 타이밍 때문에 같은 지령이 중복 처리될 수 있었습니다.","actions":["연속운전 ID를 추가해 각 시퀀스의 Step 정보를 구분·저장하고 중지·초기화 시 현재 Step 이후 동작을 검토","PLC 명령에서 모션 실행까지 이어지는 공유메모리 전달 경로의 최초 지령 및 다중 명령 입력 타이밍 확인","후속으로 원호 보간→직선 보간 연속 동작에서 감속 속도 부호가 잘못 적용되는 예외를 확인·수정"],"engineering":"연속운전 시퀀스 관리와 INT32 위치 복원은 별개 문제로 분리","result":"ID별 Step 저장과 다중 연속 궤적 기능을 개발·시험했으며, 6월 현장 적용 검증을 완료했습니다. 12월에는 원호→직선 연속 보간 경계의 예외 처리까지 추가 수정했습니다.","status":"연속운전 기능 개선","tags":["EtherCAT","Continuous Motion","Shared Memory","Step Management"],"role":"시퀀스 상태/Step 관리 개선, 지령 타이밍 디버깅 및 시험","env":"산업용 PLC · EtherCAT 위치결정 FW","constraint":"연속운전 중 최종 목표 위치가 잘못 표시되거나 목표가 갱신되지 않았고, 여러 모션 제어 명령을 짧은 시간에 입력하면 공유메모리 전달 타이밍 때문에 같은 지령이 중복 처리될 수 있었습니다.","choice":"연속운전 시퀀스 관리와 INT32 위치 복원은 별개 문제로 분리","verification":"ID별 Step 관리와 다중 연속 궤적 기능을 개발·시험했고 현장 적용 검증까지 완료했습니다. 이후 원호→직선 연속 보간 경계의 예외 처리도 추가 개선했습니다."},{"period":"11–12월","title":"32-bit 위치 경계에서 절대 위치 저장·재기동 복원 오류 개선","lead":"장시간 운전 중 위치 카운터가 signed 32-bit 상·하한 경계를 넘은 뒤 전원을 재인가하면 절대 위치 복원 기준이 어긋나는 문제를 분석·수정했습니다.","problem":"signed 32-bit 위치의 상·하한 경계 부근에서 전원을 다시 켜면 오버플로 누적값 복원이 어긋나 현재 위치가 한 회전만큼 달라질 수 있었습니다.","actions":["현재 위치·오버/언더플로 누적값·절대 위치 저장 데이터의 저장/로드 시점을 비교해 원인 분석","전원 재인가와 서보 위치 변동을 고려해 상·하한 경계에 도달하기 전 안전한 중간 저장 기준을 추가","정지→재기동 및 경계 통과 조건에서 절대 위치 저장이 누락되는 예외 경로 보완"],"engineering":"문제의 핵심을 원점 설정 일반론이 아닌 32-bit 위치 경계 전후의 영속 저장·복원 불일치로 분리했습니다. 2025년 좌표계 재정립 작업과는 별도 단계입니다.","result":"32-bit 위치 경계에서 절대 위치 저장·복원 로직을 수정했습니다. 일부 서보 조건은 추가 현장 재시험 단계로 남겨 두었습니다.","status":"경계값 복원 수정","tags":["Signed INT32","Absolute Position","Overflow","Persistence"],"role":"현재 위치 저장·로드 경로 분석과 경계 조건 펌웨어 수정","env":"EtherCAT 다축 모션 · 절대 위치 저장 데이터 · 위치 카운터","constraint":"signed 32-bit 위치의 상·하한 경계 부근에서 전원을 다시 켜면 오버플로 누적값 복원이 어긋나 현재 위치가 한 회전만큼 달라질 수 있었습니다.","choice":"문제의 핵심을 원점 설정 일반론이 아닌 32-bit 위치 경계 전후의 영속 저장·복원 불일치로 분리했습니다. 2025년 좌표계 재정립 작업과는 별도 단계입니다.","verification":"32-bit 위치 경계에서 절대 위치 저장·복원 로직을 수정했습니다. 일부 서보 조건은 추가 현장 재시험 단계로 남겨 두었습니다."}],"growth":"로드셀 계측 및 기타 현장 증상을 재현 가능한 입력·상태·통신 문제로 구분해 수정했고, 이 경험을 다중 연속운전 및 전원 재인가 시 현재 위치 복원 개선으로 연결했습니다. 토크 제어는 2024년 요구사항·초기 구현에서 2025년 QA·현장 적용으로 이어졌습니다.","card":{"overline":"FIELD / PLC EXPANSION / MOTION","title":"현장 3개 분야 · 광 증설 절체 · 연속운전·위치 복원","description":"대표 현장 증상을 구체적으로 보여주고, PLC 광 증설과 EtherCAT 모션의 실제 수정 내용을 별도로 소개.","hooks":["로드셀 계측·산업용 Ethernet·모션 현장 대응","광↔전기 컨버터 포함 PLC 광 증설 Ring ↔ Line 절체·재기동 개선","연속운전 ID별 Step 저장·중복 지령 분석","32-bit 위치 경계·ABS 파일 복원 보완"],"metric":"FIELD + FIRMWARE"}},"2025":{"subtitle":"Feature Ownership / EtherCAT Migration / Embedded Port","title":"토크 제어 전담 · EtherCAT Master 전환 · ARM 플랫폼 이식","summary":"토크 제어를 기획부터 구현·품질시험·현장 적용까지 전담했습니다. EtherCAT Master를 Acontis에서 SOEM으로 전환하고, SOEM 기반 위치결정을 ARM Linux 플랫폼의 Manager APP · Main APP · EtherCAT APP 3개 프로세스 구조에 이식했습니다. 또한 현재 위치 좌표계를 원점 오프셋 중심으로 재정립하고, PLC 펌웨어 업그레이드 시 구형 부트로더와의 하위 호환성을 개선했습니다.","keywords":["Torque Control: Plan → Develop → QA → Field","Acontis → SOEM EtherCAT Master","Manager / Main / EtherCAT 3-Process IPC","Bootloader Backward Compatibility","Origin Offset / Position Coordinate"],"range":"1월–12월","focus":"기능 전담 · EtherCAT Master 교체 · ARM 이식 · 업그레이드 호환성","projects":[{"period":"2025년","title":"EtherCAT Master SDK를 Acontis에서 SOEM으로 전환","lead":"상용 Acontis 기반 EtherCAT Master를 오픈소스 SOEM 기반으로 전환하고, 기존 위치결정 기능이 단축·다축 환경에서 동일하게 동작하도록 포팅과 검증을 진행했습니다.","problem":"Master Stack을 교체하면 PDO 처리, 상태 전이, 통신 주기, Distributed Clock 동기 방식의 차이가 기존 모션 기능과 다축 운전에 직접 영향을 줄 수 있었습니다.","actions":["기존 Acontis 기반 제어 흐름과 SOEM API·상태 전이 구조 비교","SOEM 포팅 및 Distributed Clock·통신 주기·상태 전이 조정","단축과 다축 운전을 분리해 시험하고 신규 SOEM 버전에서 발생한 다축 오류를 재현","신규 버전 적용을 중단하고 안정적인 이전 SOEM 버전으로 롤백"],"engineering":"단축 운전 성공만으로 Master 전환을 완료 처리하지 않고, 다축 동기 운전까지 동일 조건으로 확인한 뒤 적용 버전을 결정했습니다.","result":"EtherCAT Master를 Acontis에서 SOEM 기반 구조로 전환했습니다. 신규 SOEM 버전의 다축 운전에서 오류를 확인해 적용을 중단하고 안정적인 이전 버전으로 롤백해 운전 안정성을 유지했습니다.","status":"SOEM 전환 완료 · 안정 버전 적용","tags":["Acontis → SOEM","EtherCAT Master","Distributed Clock","Rollback"],"role":"EtherCAT Master SDK 전환, SOEM 포팅, 단축·다축 시험 및 적용 버전 판단","env":"EtherCAT C/C++ · Acontis · SOEM · Distributed Clock · Cyclic Thread","constraint":"Master Stack 교체 후에도 기존 위치결정과 다축 운전의 동작 호환성을 유지해야 했습니다.","choice":"Master API 교체 자체보다 실제 다축 운전의 안정성을 우선해 버전을 선택했습니다.","verification":"SOEM 기반 EtherCAT Master로 전환하고 단축·다축 운전을 시험했습니다. 신규 버전에서 다축 오류를 확인해 안정 버전으로 롤백했습니다."},{"period":"2025년","title":"EtherCAT 서보 토크 제어 기획부터 현장 적용까지 전담","lead":"토크 제어 기능의 개발 계획, 소스 구현, 개발 테스트, 품질 테스트 대응, 현장 적용까지 전 과정을 담당했습니다.","problem":"기존 위치 제어와 토크 제어를 함께 제공하려면 토크 지령뿐 아니라 가감속, 오버라이드, 정지, 위치 제어 복귀까지 하나의 운전 흐름으로 설계해야 했습니다.","actions":["토크 제어 요구사항과 개발 범위·시험 항목 수립","토크 지령, 가감속, 오버라이드 및 위치 제어 복귀 로직 구현","개발 테스트와 품질 테스트 대응","품질 검증 후 실제 현장 적용 및 운전 확인"],"engineering":"토크 명령 하나를 추가하는 방식이 아니라 위치↔토크 모드 전환과 정지·복귀 조건까지 실제 설비 운전 순서에 맞춰 설계했습니다.","result":"토크 제어의 기획→구현→개발 테스트→품질 테스트→현장 적용을 전담했고, 품질 검증 이후 실제 현장에서 사용 중입니다.","status":"개발·품질시험 완료 · 현장 사용","tags":["Torque Control","Torque ↔ Position Mode","Feature Ownership","Field Usage"],"role":"토크 제어 기능 기획·구현·개발 테스트 전담, 품질 테스트 및 현장 적용 대응","env":"EtherCAT · Servo Torque/Position Mode · Motion Control · QA","constraint":"위치 제어와 토크 제어 사이의 전환 과정에서도 설비가 예측 가능한 상태로 정지·복귀해야 했습니다.","choice":"토크 지령뿐 아니라 가감속·오버라이드·정지·위치 복귀를 하나의 기능 범위로 묶어 개발했습니다.","verification":"개발 테스트와 품질 테스트를 완료하고 실제 현장에 적용해 운전을 확인했습니다."},{"period":"12월~2026년 초 연계","title":"SOEM 기반 EtherCAT 위치결정을 ARM Linux 3-Process 구조로 이식","lead":"기존 위치결정 기능을 신규 ARM Linux 플랫폼으로 옮기고, 시스템 관리·PLC 실행·EtherCAT 제어를 3개 프로세스로 분리했습니다. Main APP과 EtherCAT APP 사이의 위치결정 명령·결과는 공유메모리 핸드셰이크로 연결했습니다.","problem":"프로세스가 분리된 환경에서는 명령을 전달했다는 사실과 실제 실행 결과를 같은 신호로 처리하면 상태를 잘못 판단할 수 있습니다. 요청 접수와 실행 완료 결과를 구분하면서도 PLC 명령과 EtherCAT 제어 흐름을 끊김 없이 연결해야 했습니다.","actions":["기존 EtherCAT 위치결정 명령·상태 처리 로직을 ARM Linux 플랫폼으로 이식","시스템 관리·PLC 실행·EtherCAT 제어의 역할과 데이터 소유 범위를 프로세스별로 분리","Main APP이 위치결정 명령과 요청 플래그를 공유메모리에 기록하고 EtherCAT APP이 접수 상태를 반환하는 요청·접수 핸드셰이크 구성","Main APP이 접수 확인 후 요청 플래그를 내리면 EtherCAT APP이 실제 처리를 시작하고, 실행 결과를 별도 결과 공유메모리에 기록한 뒤 결과 상태를 해제하도록 흐름 구성","두 상태 플래그가 모두 해제된 뒤 Main APP이 별도 결과 공유메모리를 읽어 PLC 결과 디바이스에 반영하도록 연계"],"engineering":"접수 상태와 실행 완료를 분리했습니다. EtherCAT APP의 접수 응답은 '명령을 받았다'는 ACK이며 실제 처리 완료를 의미하지 않고, 최종 실행 결과는 별도의 결과 공유메모리에서 회수하도록 구성했습니다.","result":"SOEM 기반 위치결정을 ARM Linux 3-Process 구조에 이식하고, Main APP ↔ EtherCAT APP 사이의 명령 접수와 실행 결과를 분리한 공유메모리 핸드셰이크를 연결했습니다.","status":"ARM 이식 · 공유메모리 핸드셰이크 연계","tags":["ARM Linux","3 Processes","Shared Memory","Command / Result Handshake"],"role":"기존 모션 기능 이식, 프로세스 역할 분리, Main APP–EtherCAT APP 공유메모리 명령·결과 연계","env":"ARM Linux · C++ · POSIX Shared Memory · SOEM · EtherCAT","constraint":"명령 접수 ACK와 실제 실행 결과가 서로 다른 시점에 발생하므로 한 상태값으로 처리하면 완료 시점을 잘못 판단할 수 있었습니다.","choice":"요청·접수 플래그와 실행 결과 공유영역을 분리해 명령 전달과 실제 결과 회수를 두 단계로 처리했습니다.","verification":"Main APP의 요청 → EtherCAT APP의 접수 ACK → 요청 해제 → 실행 및 결과 기록 → Main APP 결과 회수 흐름을 소스 기준으로 확인했습니다. Main APP에는 응답 대기 타임아웃 경로도 존재합니다.","architecture":"3-Process 구성 · Main APP ↔ EtherCAT APP 공유메모리 명령/결과 IPC"},{"period":"1–2월","title":"현재 위치 좌표계를 원점 오프셋 기준으로 재정립","lead":"오버플로 누적값에 의존하던 현재 위치 계산과 저장·복원 구조를 원점 오프셋 중심으로 재설계했습니다.","problem":"전원을 다시 켜거나 음수·대형 위치값을 사용할 때 화면의 현재 위치와 저장된 복원 위치가 일치하지 않는 문제가 있었습니다.","actions":["현재 위치 계산과 전원 재인가 시 복원 흐름 분석","원점 기준 오프셋을 저장하고 실제 위치에 적용하는 좌표 구조로 변경","음수 위치, 큰 위치값, 오버·언더플로 경계 및 전원 재인가 조건 시험"],"engineering":"화면에 표시하는 논리 좌표와 재기동 시 필요한 위치 기준값을 분리해 현재 위치 계산의 기준을 단순화했습니다.","result":"현재 위치 계산과 저장·복원의 기준을 원점 오프셋 중심으로 재정립해 음수 위치·큰 위치값·전원 재인가 조건의 좌표 일관성을 개선했습니다.","status":"좌표계 재설계 완료","tags":["Origin Offset","Position Restore","INT32","Persistence"],"role":"현재 위치 계산·저장·복원 구조 분석 및 좌표계 재설계","env":"EtherCAT Position · Origin Offset · Persistent Position","constraint":"운전 중 표시 위치와 전원 재인가 후 복원 위치가 같은 좌표 기준을 사용해야 했습니다.","choice":"누적 카운터 보정에 의존하기보다 원점 오프셋을 명시적인 좌표 기준으로 사용했습니다.","verification":"음수 위치와 큰 위치값, 전원 재인가 조건에서 현재 위치 저장·복원 동작을 확인했습니다."},{"period":"2025년 (세부 시기 미제공)","title":"PLC 펌웨어 업그레이드 부트로더 수정 및 구버전 호환성 확보","lead":"PLC 펌웨어 업그레이드 기능을 수정하면서 기존 장비에 설치된 이전 부트로더에서도 신규 펌웨어를 업그레이드할 수 있도록 하위 호환 경로를 보완했습니다.","problem":"현장 장비마다 부트로더 버전이 달라 신규 펌웨어 업그레이드 방식만 적용하면 기존 장비에서 업그레이드가 정상적으로 이어지지 않을 수 있었습니다.","actions":["기존 부트로더와 신규 펌웨어 업그레이드 흐름 비교","업그레이드용 부트로더 소스 수정","구버전 부트로더가 설치된 장비에서도 신규 펌웨어로 전환할 수 있도록 호환 처리 보완","기존 장비 기준 업그레이드 시나리오 시험"],"engineering":"신규 장비만 기준으로 업그레이드 기능을 설계하지 않고 이미 현장에 설치된 구형 부트로더까지 호환 대상으로 포함했습니다.","result":"부트로더를 수정하고 구버전과의 하위 호환성을 보완해 기존 장비에서도 신규 펌웨어 업그레이드를 이어갈 수 있는 경로를 구성했습니다.","status":"부트로더 호환성 개선 완료","tags":["Bootloader","Firmware Upgrade","Backward Compatibility","Legacy Support"],"role":"부트로더 수정, 펌웨어 업그레이드 흐름 분석, 구버전 호환성 대응","env":"산업용 PLC · Embedded Firmware · Bootloader · Firmware Upgrade","constraint":"이미 설치된 장비의 부트로더를 일괄 교체하지 않고도 신규 펌웨어 업그레이드를 지원해야 했습니다.","choice":"기존 부트 체인을 유지하면서 신규 업그레이드 경로가 호환되도록 부트로더를 수정했습니다.","verification":"구버전 부트로더를 포함한 기존 장비의 업그레이드 흐름을 기준으로 호환 동작을 확인했습니다."}],"growth":"토크 제어 한 기능을 기획부터 현장 적용까지 전담했고, 상용 EtherCAT Master를 SOEM으로 전환했습니다. 이어서 SOEM 기반 위치결정을 ARM Linux 3-Process 구조로 이식하며 단일 기능 개발에서 플랫폼 구조 설계까지 담당 범위를 확장했습니다.","card":{"overline":"MOTION / SDK MIGRATION / ARM PORT","title":"토크 제어 전담 · Acontis→SOEM · ARM 3-Process 이식","description":"토크 제어 전 과정 전담, EtherCAT Master 교체, ARM Linux 이식과 부트로더 하위 호환성 개선.","hooks":["토크 제어 기획→구현→품질시험→현장 사용","Acontis EtherCAT Master → SOEM 전환","Manager · Main · EtherCAT 3-Process / 공유메모리 연계","PLC 부트로더 구버전 호환성 확보","원점 오프셋 기반 현재 위치 좌표계 재정립"],"metric":"OWNERSHIP + PLATFORM"}},"2026":{"subtitle":"Real-time EtherCAT / Linux / Precision","title":"실시간 모션 안정화 · Linux 최적화 · 정밀도 개선","summary":"EtherCAT 연속운전과 실시간 실행 경로를 안정화하고, 중간점 지정방식 원호보간의 외심 계산 로직을 재설계했습니다. ARM Linux 부팅·통신 경로를 최적화했으며, 8축 동시기동은 스텝별 축 목표값 저장·복원과 전 축 완료 기준의 스텝 전환으로 연속운전 흐름을 개선했습니다. 내부 논리 좌표와 위치 변환 중간 계산을 64비트로 확장해 32비트 기계 좌표 경계를 보호했고, 회전 위치 이벤트 출력 기능도 별도로 구현했습니다. 아날로그 I/O는 보정 구조와 FW/HW 원인 분리까지 진행했습니다.","keywords":["Real-time EtherCAT & Continuous Motion","Circular Interpolation / Circumcenter","64-bit Logical Coordinate / INT32 Boundary","ARM Linux Boot Optimization","Industrial Communication Recovery","8-Axis Start: Per-Axis Target / Completion Fix","Rotation Event Output: Implementation","ADC/DAC Calibration & HW/FW Analysis"],"range":"1월–9월","focus":"실시간 모션 · 원호보간 · 64비트 좌표 계산 · Linux 성능 · 통신 안정화 · 아날로그 정밀도","projects":[{"period":"1–2월","title":"실시간 EtherCAT 실행 경로와 연속운전 상태 안정화","lead":"연속운전 종료 후 상태 복귀와 가감속·최대속도·결과 처리 오류를 수정하고, EtherCAT 주기 실행 경로의 Lock·Queue 사용을 점검했습니다.","problem":"모션 기능 오류와 실시간 실행 경로의 지연 위험이 함께 존재해 기능 로직과 주기 처리 구조를 분리해서 확인해야 했습니다.","actions":["연속운전 등록·초기화·종료 후 상태 복귀 로직 수정","가감속·최대속도·결과 상태 처리 오류 수정","EtherCAT cyclic thread와 motion 처리의 역할 및 데이터 전달 경로 점검","주기 경로에서 Lock·Queue·blocking 호출이 실행되는 위치를 호출 체인 기준으로 분석"],"engineering":"실시간 함수 한 곳만 보는 대신 실제 호출 경로 전체를 따라가며 공유 버퍼, Lock, Queue가 주기 지연에 미치는 영향을 확인했습니다.","result":"연속운전 상태 복귀와 가감속·최대속도·결과 처리 오류를 수정하고, 모션 처리와 EtherCAT 주기 실행 경로의 책임을 분리해 안정화했습니다.","status":"연속운전 수정 · 실시간 경로 안정화","tags":["Real-Time","EtherCAT Thread","EtherCAT Master Stack","Servo"],"role":"연속운전 상태 로직 수정, EtherCAT cyclic/motion 호출 경로 분석","env":"ARM Linux · EtherCAT · 1ms PLC Cycle · High-frequency Cyclic Thread · C++","constraint":"주기 처리 중 Lock·Queue·blocking 호출이 발생하면 모션 기능이 정상이어도 실시간 응답이 흔들릴 수 있었습니다.","choice":"기능 결함과 주기 실행 인프라의 지연 위험을 분리해서 수정했습니다.","verification":"연속운전 종료·상태 복귀·가감속·최대속도·결과 처리 동작을 수정하고 EtherCAT 실시간 호출 경로를 점검했습니다.","question":"실시간 주기 함수에 락이 안 보이는데도 blocking 위험이 생길 수 있는 이유는?","diagram":"PLC 1ms → Shared Memory → Motion State → EtherCAT Cyclic Path"},{"period":"2월","title":"중간점 지정방식 원호보간의 외심 계산 로직 재설계","lead":"두 선분의 기울기로 원의 중심을 구하던 방식을 세 점의 외심을 직접 계산하는 방식으로 변경해, 수평·수직 구간에서도 올바른 원호 중심을 계산하도록 개선했습니다.","problem":"기존 방식은 시작점→중간점, 중간점→끝점의 기울기를 각각 계산해 원의 중심을 구했습니다. 이때 두 점의 y 좌표가 같으면 분모가 0이 되고, 예외 분기에서 중심 좌표를 잘못 확정할 수 있었습니다. 예를 들어 (0,0) → (2,0) → (0,2)의 경우 기존 분기는 중심을 (1,0)으로 계산하지만 실제 외심은 (1,1)입니다.","actions":["선분별 기울기 계산과 예외 분기 대신 시작점·중간점·끝점 세 점을 이용한 외심 계산식으로 중심 좌표 계산","세 점이 일직선인 경우 외심이 정의되지 않도록 입력 예외 처리","계산된 중심과 반지름의 유효성 및 반지름 범위를 확인하는 방어 로직 적용","기존 중간점 기반 회전 방향 판정과 끝각 보정 흐름은 유지해 변경 범위를 중심 계산부로 제한"],"engineering":"기존 방식은 선분의 Δy로 나누는 구조라 수평 선분에서 별도 예외 처리가 필요했고, 해당 분기가 중심의 한 축뿐 아니라 다른 축까지 잘못 확정할 수 있었습니다. 세 점의 행렬식으로 외심을 직접 구하도록 바꾸면서 개별 선분 기울기에 의존하지 않도록 했습니다.","result":"유효한 세 점이 만드는 원의 중심을 외심으로 직접 계산하도록 변경했습니다. 수평·수직 선분도 별도 기울기 예외 분기 없이 처리할 수 있게 됐고, 일직선 입력과 비정상 중심·반지름에 대한 방어 조건도 추가했습니다. 거의 일직선인 입력의 수치 안정성은 추가 개선 여지가 있습니다.","status":"외심 계산 로직 적용 완료","tags":["Circular Interpolation","Circumcenter","Coordinate Geometry","Numerical Robustness"],"role":"기존 원호 중심 계산의 경계 조건 분석, 외심 계산식 적용 및 예외 처리 개선","env":"EtherCAT 다축 위치결정 · 중간점 지정 원호보간 · C++","constraint":"기존 방식은 개별 선분 기울기를 먼저 계산해 수평 선분에서 0으로 나누는 조건이 발생했고, 예외 분기만으로 모든 세 점 배치를 정확히 처리하기 어려웠습니다.","choice":"개별 기울기와 예외 분기를 늘리는 대신 세 점을 동시에 사용하는 외심 계산식으로 중심을 직접 계산했습니다.","verification":"(0,0), (2,0), (0,2) 좌표를 대입했을 때 기존 방식의 중심 (1,0) 대신 세 점까지의 거리가 모두 같은 (1,1)을 계산하는 것을 확인했습니다. 개선 효과는 계산 정확성과 입력 처리 범위에 한정하며 별도 실기 성능 수치는 포함하지 않았습니다.","question":"왜 기울기 기반 중심 계산 대신 세 점의 외심을 직접 계산하도록 변경했나요?","diagram":"3점 입력 → 기존: 선분별 기울기·예외 분기 → 개선: 세 점 외심 직접 계산 → 중심·반지름 유효성 검사 → 기존 회전 방향/끝각 계산"},{"period":"2026년","title":"논리 좌표·중간 계산의 64비트 확장과 32비트 경계 보호","lead":"기준점 오프셋을 적용한 논리 좌표와 위치 변환 과정의 중간 계산을 64비트로 확장해, 32비트 연산 범위를 넘는 중간값 때문에 좌표가 잘못 감기는 문제를 줄였습니다.","problem":"현재 머신 위치에서 기준점 오프셋을 빼거나 논리 목표 위치를 머신 위치로 변환할 때 32비트 범위를 넘는 중간값이 발생할 수 있었습니다. 계산 중 오버플로가 발생하면 최종 드라이브 지령 범위가 정상인지 판단하기 전에 좌표값 자체가 왜곡될 수 있었습니다.","actions":["현재 머신 펄스와 기준점 오프셋의 차이를 64비트 논리 좌표로 계산","펄스↔사용자 좌표 변환과 논리 목표·기준점·머신 목표 계산의 중간값을 64비트로 확장","최종 머신 목표가 32비트 드라이브 위치 범위를 벗어나면 캐스팅 전에 오류로 처리하는 경계 검사 적용","기준점 변경과 32비트 위치 경계 통과 시 논리 좌표와 실제 머신 위치의 역할을 분리해 처리"],"engineering":"인터페이스 전체를 64비트로 바꾼 것이 아니라, 계산 과정에서 필요한 범위만 넓혔습니다. 최종 드라이브 위치 명령과 Main APP의 위치 데이터는 여전히 32비트이므로, 64비트 중간 계산 후 최종 32비트 범위를 명시적으로 검사합니다.","result":"내부 논리 좌표와 위치 변환 중간 계산에서 32비트 오버플로 가능성을 줄이고, 드라이브가 표현할 수 없는 위치는 잘못 감긴 값으로 전달하지 않고 범위 오류로 처리하도록 개선했습니다.","status":"64비트 중간 계산 · 32비트 경계 검사","tags":["64-bit Coordinate","Origin Offset","INT32 Boundary","Overflow Protection"],"role":"좌표 데이터형·변환 경로 분석, 64비트 중간 계산 적용, 최종 머신 위치 범위 검사","env":"EtherCAT Motion · C/C++ · int64_t · 32-bit Drive Position","constraint":"논리 좌표 계산에는 32비트를 넘는 중간값이 필요할 수 있지만, 실제 드라이브 Target Position 인터페이스는 32비트 범위를 유지해야 했습니다.","choice":"외부 위치 인터페이스를 무리하게 64비트화하지 않고 내부 좌표·중간 계산만 64비트로 확장한 뒤 최종 지령 경계에서 32비트 범위를 검사했습니다.","verification":"현재 좌표·이전 좌표와 위치 변환 경로의 64비트 계산을 적용하고, 최종 머신 목표가 32비트 범위를 벗어날 때 오류 처리 경로가 동작하도록 구성했습니다. '64비트 위치를 드라이브까지 지령 가능'한 구조로는 표현하지 않습니다."},{"period":"4–5월","title":"ARM Linux 부팅 체인 계측 및 약 3초 단축","lead":"부팅 과정을 단계별로 계측한 뒤 반복 Shell 실행을 직접 시스템 호출로 바꾸고 불필요한 초기화를 줄여 준비 시간을 단축했습니다.","problem":"Bootloader부터 Kernel, init, 초기화 스크립트, 애플리케이션 시작까지 여러 단계에 Shell 명령과 직렬 초기화가 누적되어 부팅 시간이 길어졌습니다.","actions":["부팅 단계별 시간 계측 포인트 추가","ifconfig·route·cp 등 반복 system() 호출을 ioctl·open·write 기반 직접 호출로 변경","불필요 장치 probe와 DTB 설정 정리","의존성이 없는 초기화 작업을 병렬화"],"engineering":"먼저 부팅 시간을 단계별로 나눈 뒤 프로세스 생성, 네트워크 설정, 커널 probe, 애플리케이션 초기화를 각각 최적화했습니다.","result":"부팅 체인의 여러 단계에서 발생하던 병목을 개선해 전체 준비 시간을 약 3초 단축했습니다.","status":"부팅 최적화 완료","tags":["ARM Linux","Boot","ioctl","U-Boot","DTB"],"role":"부팅 시간 계측, Shell 호출 제거, 네트워크·초기화 경로 최적화","env":"ARM Linux · U-Boot · SysV Init · ioctl · DTB","constraint":"부팅 단계가 여러 계층으로 나뉘어 있어 전체 시간만 보면 실제 병목을 찾기 어려웠습니다.","choice":"각 단계의 시간을 먼저 계측한 뒤 비용이 큰 Shell 실행과 불필요 초기화를 제거했습니다.","verification":"전체 부팅 체인은 단계별 개선량을 합산해 약 3초 단축했습니다. 이와 별도로 초기화 스크립트 시작 이후 모듈 준비 완료까지의 특정 구간은 최적화 후 448ms로 계측했습니다.","question":"전후 직접 계측값과 여러 구간 개선량을 합산한 값을 왜 같은 성과 지표처럼 말하면 안 되는가?","diagram":"U-Boot → Kernel/DTB → SysV Init → 초기화 → Manager → Application Ready"},{"period":"5–7월","title":"ARM Linux 산업용 Ethernet 통신의 요청 충돌·재기동 복구 개선","lead":"PLC 프로그램 다운로드·상태 변경과 여러 통신 프로토콜이 동시에 동작할 때 공유 DPRAM 요청이 충돌하거나 Loader 통신이 끊기는 문제를 분석·수정했습니다.","problem":"여러 통신 기능이 동일한 DPRAM 핸드셰이크와 결과 버퍼를 공유하면서 새 요청이 기존 요청을 덮어쓰거나 callback이 어긋날 수 있었고, CPU 상태 변경·프로그램 다운로드 이후 Loader 통신이 끊기는 문제도 함께 발생했습니다.","actions":["진행 중인 DPRAM 요청·CPU 핸드셰이크·처리 대기 결과를 하나의 busy 조건으로 묶어 새 요청 진입 제어","Ethernet·이중화 등 여러 요청 생성 경로를 직렬화하고 기존 결과를 처리한 뒤 다음 요청을 생성하도록 순서 정리","Loader 응답 대상·callback·timeout 처리 경로를 보완해 요청 실패 시에도 응답 경로가 끊기지 않도록 수정","APP 재실행과 CPU 재기동, 이중화 역할 전환 시 초기화·복구 조건을 구분해 상태 처리 보완"],"engineering":"개별 Socket 오류보다 여러 프로토콜이 하나의 DPRAM 요청·결과 경로를 공유하는 구조를 중심으로 요청 생성→핸드셰이크→결과 처리→복구 순서를 분석했습니다.","result":"공유 DPRAM 요청의 직렬화와 busy 판정을 보강하고 Loader 응답·재기동 복구 경로를 정리해 요청 덮어쓰기와 상태 불일치 가능성을 줄였습니다.","status":"요청 직렬화 · 복구 경로 개선","tags":["ARM Linux","Industrial Ethernet","DPRAM Handshake","Request Arbitration"],"role":"DPRAM 요청 충돌 분석, 요청 직렬화·Loader 응답·재기동 상태 처리 개선","env":"ARM Linux · Industrial Ethernet · DPRAM · Loader · Multi-thread","constraint":"여러 통신 기능이 동일한 DPRAM 핸드셰이크와 결과 처리 경로를 동시에 사용할 수 있었습니다.","choice":"각 통신 기능을 개별 수정하기보다 공통 busy 조건과 요청 직렬화 규칙을 만들어 공유 자원 접근 순서를 정리했습니다.","verification":"DPRAM 요청 직렬화, Loader 응답 경로, 재기동·역할 전환 시 상태 처리 로직을 반영했습니다.","question":"여러 통신 프로토콜이 하나의 DPRAM 요청 경로를 공유할 때 요청 덮어쓰기를 어떻게 방지할 것인가?","diagram":"Protocol Request → Busy/Arbitration → DPRAM Handshake → Result Buffer → Response / Recovery"},{"period":"6–7월","title":"8축 동시기동의 축별 목표값·완료 처리 개선","lead":"최대 8축을 선택해 동시에 시작하는 기능에서, 연속운전 다음 스텝의 목표값이 달라지거나 한 축의 조기 완료로 다른 축의 운전이 끊기는 문제를 개선했습니다.","problem":"동시기동 준비·실행 과정에서 공유 위치·속도 값이 이전 스텝 데이터로 덮어써질 수 있었고, 여러 축 중 하나가 먼저 완료되면 나머지 축이 이동 중인데도 다음 스텝으로 넘어가거나 운전이 종료될 수 있었습니다.","actions":["각 축의 목표 위치·속도와 제어 데이터를 연속운전 스텝별로 저장하고 실행 시 해당 스텝 데이터에서 복원","동시기동 비트맵을 다시 설정하기 전에 선택된 모든 축의 목표 위치·속도를 배열에 일괄 복사하고, 복사본을 기준으로 축별 운전 시작","동시기동 완료 처리를 별도로 분리해 먼저 끝난 축은 자신만 완료 처리하고 선택된 모든 축의 운전 종료 후에만 다음 스텝으로 전환","각 축이 자신의 목표값·가감속 설정·운전 상태에 따라 독립적으로 진행하고 완료되도록 상태 흐름 정리"],"engineering":"동시기동을 여러 축이 같은 시점에 시작하고 같은 시점에 끝나는 하나의 동작으로 취급하지 않고, 시작만 동기화하되 목표값·가감속·완료 시점은 축마다 독립적인 운전으로 재정의했습니다.","result":"스텝별 축 목표값을 보존하고 전 축 완료를 기준으로 다음 스텝을 진행하도록 수정해, 동시기동 연속운전의 목표값 보존과 축별 완료 처리를 개선했습니다.","status":"동시기동 연속운전 개선","tags":["8-Axis Start","Continuous Motion","Per-Axis State","Step Buffer"],"role":"연속운전 스텝 데이터 구조, 동시기동 실행 경로, 축별 완료 상태 분석·수정","env":"EtherCAT Multi-axis · DPRAM · Motion State Machine · Continuous Motion","constraint":"최대 8축 선택 구조에서 각 축의 목표 거리와 완료 시점이 달라도 공유 데이터 갱신이나 한 축의 완료가 다른 축의 운전에 영향을 주지 않아야 했습니다.","choice":"스텝 등록 시 축별 목표값을 보존하고, 실행 직전 선택 축 전체의 데이터를 먼저 복사한 뒤 축별로 운전을 시작하도록 데이터 수명을 분리했습니다.","verification":"구체적인 재현 사례는 2축 연속운전에서 확인했으며, 목표 위치·속도 보존과 전 축 완료 후 다음 스텝 전환 로직을 수정했습니다. 최대 8축 전체 동시 운전의 실기 검증 완료를 의미하지는 않습니다."},{"period":"6–7월","title":"회전 위치 기반 디지털 출력 기능 구현 및 AI 교차 리뷰","lead":"회전축이 설정된 등분 지점을 통과할 때 지정 I/O로 펄스를 출력하는 기능을 설계·구현하고, AI를 활용해 실시간 위치 판정과 안전 정지 경로를 교차 검토했습니다.","problem":"고속 위치 갱신 중에도 등분 지점 통과를 놓치지 않아야 했고, 출력이 활성화된 상태에서 정지·서보 OFF·비상정지 등 운전 상태가 바뀌면 안전하게 출력을 해제해야 했습니다.","actions":["등분 수·기준점·출력 대상과 활성/해제 조건 설계","실시간 위치 snapshot과 등분 지점 통과 판정 로직 구현","정방향·역방향의 등분점 통과를 처리하고 펄스 ON/OFF 상태 관리","정지·서보 OFF·원점복귀·비상정지·드라이브 오류 시 출력 강제 OFF 처리","AI 교차 리뷰를 통해 위치 snapshot, 출력 상태, 재시작 경계 조건을 점검하고 후속 패치 반영"],"engineering":"위치 계산과 실제 출력 상태를 분리해, 축 위치가 등분점을 통과하는 순간을 판정하는 로직과 출력 ON/OFF·안전 해제 상태를 독립적으로 관리했습니다.","result":"회전 위치를 기준으로 등분 지점 통과를 판정하고 지정 디지털 출력에 펄스를 발생시키는 기능을 구현했습니다. 재시작과 안전 정지 조건에서 이전 출력 상태가 남지 않도록 상태 흐름도 함께 정리했습니다.","status":"회전 위치 이벤트 출력 기능 구현","tags":["Rotation Event Output","Real-time Snapshot","Digital Output","Safety Handling"],"role":"기능 동작 정책·출력 사양 결정, AI 협업 설계·구현·교차 리뷰","env":"ARM Linux · EtherCAT Real-time Cycle · Position Snapshot · Digital Output","constraint":"실시간 위치 갱신과 출력 판정이 동시에 진행되는 동안 안전 정지 조건까지 일관되게 처리해야 했습니다.","choice":"위치 snapshot과 출력 상태를 분리하고, 등분점 통과 판정과 안전 해제를 별도 상태 흐름으로 구성했습니다.","verification":"회전 위치 기반 등분점 판정, 출력 펄스 상태, 정지·오류 시 강제 OFF 경로를 구현·검토했습니다. 이 기능의 전용 APP 간 요청·응답 신호나 ACK 순서는 현재 확인 범위에서 특정하지 않았으므로 별도 핸드셰이크로 설명하지 않습니다."},{"period":"7–9월","title":"ADC/DAC 실측 오차 기반 보정 및 온도별 FW/HW 원인 분리","lead":"실측 오차를 입력하는 보정 방식과 채널·출력 범위별 계수 구조를 개선하고, 디지털 계산값과 실제 아날로그 출력의 차이를 단계별로 분석했습니다.","problem":"채널·출력 범위·온도에 따라 오차 크기와 방향이 달라 펌웨어 계산, SPI 전달, DAC 이후 아날로그 회로 중 어느 구간에서 편차가 생기는지 분리해야 했습니다.","actions":["실측 오차 기반 2점 보정 구조와 채널·출력 범위별 Offset/Gain 분리","보정값 저장·복원과 Flash 갱신 경로 점검","FW RAW 값과 DAC DATA/CONTROL을 비교하는 진단 경로 구성","상온·저온·고온 시험 결과와 회로 변경 전후 결과 비교","펌웨어 보정으로 해결 가능한 오차와 아날로그 회로·온도 특성을 분리"],"engineering":"FW 계산값 → SPI 전송 → DAC 내부 값 → 실제 출력 단자를 각각 다른 관측 지점으로 나누어 원인 범위를 좁혔습니다.","result":"실측 오차 기반 보정과 채널·범위별 계수 관리를 적용하고, 일부 시험에서 MCU 송신값과 DAC 수신값의 일치를 확인해 디지털 경로와 아날로그 출력단을 분리해 분석할 수 있었습니다.","status":"보정 구조 개선 · 환경별 원인 분석","tags":["ADC/DAC","Calibration","SPI","Temperature","HW/FW"],"role":"보정 알고리즘·버퍼 구조 개선, RAW/DAC 진단, 온도별 FW/HW 원인 분리","env":"STM32 · ADC/DAC · SPI · Flash · Temperature Test","constraint":"보정 계수만 조정해서 해결되는 gain/offset 오차와 온도·회로 특성으로 발생하는 오차를 구분해야 했습니다.","choice":"디지털 계산부터 실제 출력까지 관측 지점을 단계별로 나눠 FW와 HW의 책임 범위를 분리했습니다.","verification":"실측 보정과 RAW/DAC 비교를 통해 디지털 전달 경로를 확인하고, 남는 오차는 온도·아날로그 출력 조건과 분리해 시험했습니다.","question":"SPI 송수신 데이터가 일치하는데 아날로그 출력 오차가 남는다면 다음에 무엇을 측정할 것인가?","diagram":"Raw ADC/DAC → 계수/Flash 검증 → SPI·settling → 기준전압/출력단 → 온도 재시험"}],"growth":"실시간 모션 제어뿐 아니라 원호보간의 좌표 계산 재설계, ARM Linux 부팅·통신, ADC/DAC 정밀도까지 시스템 전반을 다뤘습니다. 기능 구현과 계산 로직 개선, 성능 최적화, 하드웨어 연계 분석을 각각 실제 진행 상태에 맞춰 구분했습니다.","card":{"overline":"REAL-TIME / LINUX / PRECISION","title":"실시간 모션 · 원호보간 · Linux 최적화 · 정밀도 개선","description":"모션 실행 경로 안정화, 중간점 원호보간 외심 계산, ARM Linux 부팅·통신, 아날로그 보정 개선.","hooks":["EtherCAT 연속운전·실시간 실행 경로 안정화","중간점 지정 원호보간 외심 계산 로직 재설계","ARM Linux 부팅 단계 최적화 약 3초","8축 동시기동 상태 전이·연속운전 오류 개선","회전 위치 이벤트 출력 구현·APP 간 핸드셰이크 분석","ADC/DAC 보정·온도별 FW/HW 원인 분리"],"metric":"REAL-TIME + SYSTEM"}}};
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let year=null, selected=0, all=false;
+function badge(t){return `<span class="hook">${escapeHTML(t)}</span>`}
+function detailHTML(p,i,y){
+ const tags=p.tags.map(t=>`<span>${escapeHTML(t)}</span>`).join('');
+ return `<article class="detail-panel readable-case" id="case-${y}-${i+1}" aria-label="${escapeHTML(p.title)} 상세">
+ <div class="project-banner"><div class="project-kicker"><span>PROJECT ${String(i+1).padStart(2,'0')} · ${escapeHTML(p.period)} / ${y}</span><span class="status">${escapeHTML(p.status)}</span></div>
+ <h3>${escapeHTML(p.title)}</h3><p class="case-oneline">${escapeHTML(p.lead)}</p><div class="tech-pills">${tags}</div></div>
+ ${p.architecture?`<div class="architecture"><b>3-App 데이터 연계</b><span>${escapeHTML(p.architecture)}</span></div>`:""}
+ <div class="quick-grid">
+  <section class="quick-box"><span class="quick-number">01 · 왜 필요한 작업이었나</span><p>${escapeHTML(p.problem)}</p></section>
+  <section class="quick-box main-work"><span class="quick-number">02 · 내가 실제로 한 일</span><ul>${p.actions.map(a=>`<li>${escapeHTML(a)}</li>`).join('')}</ul></section>
+  <section class="quick-box outcome"><span class="quick-number">03 · 결과 / 확인 상태</span><p>${escapeHTML(p.result)}</p><span class="status simple-status">${escapeHTML(p.status)}</span></section>
+ </div>
+ <details class="engineering-more"><summary>개발 환경 · 기술 판단 · 현재 상태 자세히 보기 <span aria-hidden="true">⌄</span></summary><div class="engineering-inner">
+ <p><b>담당 범위</b><br>${escapeHTML(p.role)}</p>
+ <p><b>기술 환경</b><br>${escapeHTML(p.env)}</p>
+ <p><b>핵심 판단</b><br>${escapeHTML(p.choice)}</p>
+ <p><b>현재 상태 및 범위</b><br>${escapeHTML(p.verification)}</p>
+ </div></details>
+ <div class="detail-footer"><span>Embedded / Firmware Project</span><button type="button" data-next="${i+1}">${i+1===YEARS[y].projects.length?'첫 프로젝트로':'다음 프로젝트로'} →</button></div>
+ </article>`;
+}
+function projectButtons(y){return YEARS[y].projects.map((p,i)=>`<button class="project-tab ${i===selected&&!all?'active':''}" type="button" data-project="${i}" aria-current="${i===selected&&!all?'true':'false'}"><span class="project-n">${String(i+1).padStart(2,'0')}</span><span><strong>${escapeHTML(p.title)}</strong><small>${escapeHTML(p.period)} · ${escapeHTML(p.lead)}</small></span></button>`).join('')}
+function updateProject(shouldScroll=false){
+ const d=YEARS[year];if(!d)return;
+ $('#project-menu').innerHTML=projectButtons(year);
+ $('#single-project').innerHTML=detailHTML(d.projects[selected],selected,year);
+ $('#all-projects').innerHTML=all?d.projects.map((p,i)=>detailHTML(p,i,year)).join(''):'';
+ $('#year-view').classList.toggle('all-mode',all);
+ $('#alltoggle').textContent=all?'프로젝트 하나씩 보기':'모든 프로젝트 한눈에 보기';
+ $('#alltoggle').setAttribute('aria-pressed',String(all));
+ $$('#project-menu [data-project]').forEach(b=>b.onclick=()=>{selected=Number(b.dataset.project);all=false;updateProject(true);history.replaceState(null,'',`#/year/${year}/project/${selected+1}`)});
+ $$('#year-view [data-next]').forEach(b=>b.onclick=()=>{selected=Number(b.dataset.next)%d.projects.length;all=false;updateProject(true);history.replaceState(null,'',`#/year/${year}/project/${selected+1}`)});
+ if(shouldScroll)$('#project-explorer').scrollIntoView({behavior:'instant',block:'start'});
+}
+function showYear(y,index=0,allMode=false,shouldScroll=true){
+ if(!YEARS[y])return;
+ year=y;selected=Math.max(0,Math.min(index,YEARS[y].projects.length-1));all=allMode;
+ const d=YEARS[y];
+ $('#overview').hidden=true;$('#ai-view').hidden=true;$('#year-view').hidden=false;
+ $('#crumb').innerHTML=`PORTFOLIO <span aria-hidden="true">/</span> <b>${y}</b>`;
+ $('#detail-yr').textContent=y;$('#detail-overline').textContent=d.subtitle;
+ $('#detail-title').textContent=d.card.title;$('#detail-summary').textContent=d.summary;
+ $('#detail-count').textContent=d.projects.length;$('#detail-range').textContent=d.range;
+ $('#detail-keyword-count').textContent=d.keywords.length;
+ $('#detail-hooks').innerHTML=d.card.hooks.map(badge).join('');
+ $('#detail-growth').textContent=d.growth;
+ $('#project-head-count').textContent=`대표 프로젝트 ${d.projects.length}건`;
+ $$('.nav').forEach(b=>{const active=b.dataset.navYear===y;b.classList.toggle('active',active); if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+ updateProject();
+ document.title=`${y} · 홍진기 Embedded Engineering Dashboard`;
+ if(shouldScroll)window.scrollTo({top:0,behavior:'instant'});
+}
+function showHome(shouldScroll=true){
+ year=null;$('#year-view').hidden=true;$('#ai-view').hidden=true;$('#overview').hidden=false;
+ $('#crumb').innerHTML='PORTFOLIO <span aria-hidden="true">/</span> <b>OVERVIEW</b>';
+ $$('.nav').forEach(b=>{const active=b.hasAttribute('data-home');b.classList.toggle('active',active); if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+ document.title='홍진기 · Embedded Engineering Dashboard';
+ if(shouldScroll)window.scrollTo({top:0,behavior:'instant'});
+}
+function showAI(shouldScroll=true){
+ year=null;$('#overview').hidden=true;$('#year-view').hidden=true;$('#ai-view').hidden=false;
+ $('#crumb').innerHTML='PORTFOLIO <span aria-hidden="true">/</span> <b>AI HARNESS</b>';
+ $$('.nav').forEach(b=>{const active=b.hasAttribute('data-ai');b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+ document.title='AI 하네스 프로젝트 적용 · 홍진기 Embedded Engineering Dashboard';
+ if(shouldScroll)window.scrollTo({top:0,behavior:'instant'});
+}
+function navigate(){
+ const hash=location.hash;
+ if(hash==='#/ai'){showAI(false);return;}
+ const m=hash.match(/^#\/year\/(2024|2025|2026)(?:\/(project\/(\d+)|all))?$/);
+ if(m){const y=m[1];const isAll=m[2]==='all';showYear(y,m[3]?Number(m[3])-1:0,isAll,false)}else showHome(false);
+}
+$$('[data-nav-year]').forEach(b=>b.onclick=()=>{location.hash=`/year/${b.dataset.navYear}`;showYear(b.dataset.navYear)});
+$$('[data-home]').forEach(b=>b.onclick=()=>{location.hash='/home';showHome()});
+$$('[data-ai]').forEach(b=>b.onclick=()=>{location.hash='/ai';showAI()});
+$('#alltoggle').onclick=()=>{all=!all;updateProject();history.replaceState(null,'',`#/year/${year}/${all?'all':`project/${selected+1}`}`)};
+window.addEventListener('hashchange',navigate);
+navigate();
+</script></body></html>
