@@ -2385,6 +2385,69 @@ button:focus-visible,summary:focus-visible,.nav:focus-visible,.project-tab:focus
 /* v51 cover navigation removed */
 .cover-actions,.cover-btn{display:none!important}
 
+
+
+
+/* v54 route visibility fix */
+#overview[hidden],
+#ai-view[hidden],
+#year-view[hidden]{
+  display:none!important;
+}
+#overview:not([hidden]){
+  display:flex!important;
+  flex-direction:column!important;
+  gap:28px!important;
+}
+
+
+/* v55 year overview visual harmonization — AI harness green language */
+.year-intro{
+  background:linear-gradient(135deg,#30493a 0%,#365342 72%,#3f5d49 100%)!important;
+  border:1px solid #526f5c!important;
+  color:#f5f8f5!important;
+  box-shadow:none!important;
+}
+.year-intro h1,.year-intro h2,.year-intro h3,.year-intro strong,.year-intro b,.year-intro p,.year-intro span{
+  color:#f5f8f5!important;
+}
+.year-badge{
+  background:transparent!important;
+  color:#f5f8f5!important;
+  border:0!important;
+  border-right:1px solid rgba(232,241,234,.38)!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  padding-right:18px!important;
+}
+.hook-row{
+  gap:8px!important;
+}
+.hook{
+  background:rgba(232,241,234,.06)!important;
+  color:#eef5ef!important;
+  border:1px solid rgba(218,232,220,.38)!important;
+  border-radius:8px!important;
+  box-shadow:none!important;
+  padding:6px 10px!important;
+}
+.hook:hover{
+  background:rgba(232,241,234,.11)!important;
+  border-color:rgba(232,241,234,.58)!important;
+}
+.year-growth{
+  background:linear-gradient(120deg,#314b3b 0%,#3b5745 100%)!important;
+  border:1px solid #56715f!important;
+  color:#f5f8f5!important;
+  box-shadow:none!important;
+}
+.year-growth h3{
+  color:#f5f8f5!important;
+}
+.year-growth p{
+  color:#dce6de!important;
+}
+
 </style></head><body>
 <a class="skip" href="#year-index">연도별 목차로 이동</a>
 <div id="app">
@@ -2617,7 +2680,7 @@ function updateProject(shouldScroll=false){
  $('#alltoggle').setAttribute('aria-pressed',String(all));
  $$('#project-menu [data-project]').forEach(b=>b.onclick=()=>{selected=Number(b.dataset.project);all=false;updateProject(true);history.replaceState(null,'',`#/year/${year}/project/${selected+1}`)});
  $$('#year-view [data-next]').forEach(b=>b.onclick=()=>{selected=Number(b.dataset.next)%d.projects.length;all=false;updateProject(true);history.replaceState(null,'',`#/year/${year}/project/${selected+1}`)});
- if(shouldScroll)$('#project-explorer').scrollIntoView({behavior:'instant',block:'start'});
+ if(shouldScroll)$('#project-explorer').scrollIntoView({behavior:'auto',block:'start'});
 }
 function showYear(y,index=0,allMode=false,shouldScroll=true){
  if(!YEARS[y])return;
@@ -2635,21 +2698,21 @@ function showYear(y,index=0,allMode=false,shouldScroll=true){
  $$('.nav').forEach(b=>{const active=b.dataset.navYear===y;b.classList.toggle('active',active); if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
  updateProject();
  document.title=`${y} · 홍진기 Embedded Engineering Dashboard`;
- if(shouldScroll)window.scrollTo({top:0,behavior:'instant'});
+ if(shouldScroll)window.scrollTo({top:0,behavior:'auto'});
 }
 function showHome(shouldScroll=true){
  year=null;$('#year-view').hidden=true;$('#ai-view').hidden=true;$('#overview').hidden=false;
  $('#crumb').innerHTML='PORTFOLIO <span aria-hidden="true">/</span> <b>OVERVIEW</b>';
  $$('.nav').forEach(b=>{const active=b.hasAttribute('data-home');b.classList.toggle('active',active); if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
  document.title='홍진기 · Embedded Engineering Dashboard';
- if(shouldScroll)window.scrollTo({top:0,behavior:'instant'});
+ if(shouldScroll)window.scrollTo({top:0,behavior:'auto'});
 }
 function showAI(shouldScroll=true){
  year=null;$('#overview').hidden=true;$('#year-view').hidden=true;$('#ai-view').hidden=false;
  $('#crumb').innerHTML='PORTFOLIO <span aria-hidden="true">/</span> <b>AI HARNESS</b>';
  $$('.nav').forEach(b=>{const active=b.hasAttribute('data-ai');b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
  document.title='AI 하네스 프로젝트 적용 · 홍진기 Embedded Engineering Dashboard';
- if(shouldScroll)window.scrollTo({top:0,behavior:'instant'});
+ if(shouldScroll)window.scrollTo({top:0,behavior:'auto'});
 }
 function navigate(){
  const hash=location.hash;
@@ -2657,10 +2720,35 @@ function navigate(){
  const m=hash.match(/^#\/year\/(2024|2025|2026)(?:\/(project\/(\d+)|all))?$/);
  if(m){const y=m[1];const isAll=m[2]==='all';showYear(y,m[3]?Number(m[3])-1:0,isAll,false)}else showHome(false);
 }
-$$('[data-nav-year]').forEach(b=>b.onclick=()=>{location.hash=`/year/${b.dataset.navYear}`;showYear(b.dataset.navYear)});
-$$('[data-home]').forEach(b=>b.onclick=()=>{location.hash='/home';showHome()});
-$$('[data-ai]').forEach(b=>b.onclick=()=>{location.hash='/ai';showAI()});
-$('#alltoggle').onclick=()=>{all=!all;updateProject();history.replaceState(null,'',`#/year/${year}/${all?'all':`project/${selected+1}`}`)};
+$$('[data-nav-year]').forEach(b=>b.addEventListener('click',()=>{
+ const y=b.dataset.navYear;
+ showYear(y);
+ history.pushState(null,'',`#/year/${y}`);
+ window.scrollTo({top:0,behavior:'auto'});
+}));
+
+$$('[data-home]').forEach(b=>b.addEventListener('click',()=>{
+ showHome();
+ history.pushState(null,'','#/home');
+ window.scrollTo({top:0,behavior:'auto'});
+}));
+
+$$('[data-ai]').forEach(b=>b.addEventListener('click',()=>{
+ showAI();
+ history.pushState(null,'','#/ai');
+ window.scrollTo({top:0,behavior:'auto'});
+}));
+
+const allToggle=$('#alltoggle');
+if(allToggle){
+ allToggle.onclick=()=>{
+   all=!all;
+   updateProject();
+   history.replaceState(null,'',`#/year/${year}/${all?'all':`project/${selected+1}`}`);
+ };
+}
+
+window.addEventListener('popstate',navigate);
 window.addEventListener('hashchange',navigate);
 navigate();
 </script></body></html>
